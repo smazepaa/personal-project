@@ -1,0 +1,143 @@
+#main{
+    width:100%;
+}
+
+#list{
+    width: 50%;
+    padding-left: 30px;
+}
+
+#buttons {
+    width: 50%;
+    padding:10px;
+    margin-top: 10px;
+    padding-left: 30px;
+    margin-bottom:20px;
+}
+
+
+ul{
+    margin:0;
+    padding:0;
+}
+
+    ul li {
+        cursor: pointer;
+        position: relative;
+        padding:8px 40px 8px 15px;
+        list-style-type: none;
+        background: #eee;
+        font-size: 16px;
+        margin-bottom:5px;
+        font-family:'Segoe UI';
+        color:midnightblue;
+        display:flex;
+        align-items:center;
+    }
+
+
+    /* Darker background-color on hover */
+    ul li:hover {
+        background: #ddd;
+    }
+
+    /* When clicked on, add a background color and strike out text */
+    ul li.checked {
+        background: #888;
+        color: #fff;
+        text-decoration: line-through;
+    }
+
+
+.close {
+    position: absolute;
+    right: 0;
+    top: auto;
+    padding: 8px 16px 8px 16px;
+    color: midnightblue;
+}
+
+h2{
+    margin-left:50px;
+    font-family: 'Segoe UI';
+    color:midnightblue;
+}
+
+input {
+    border-radius: 40px;
+    border: 1px solid midnightblue;
+    padding: 15px 23px;
+    width: 35vw;
+    font-family: Arial;
+    font-size: 1em;
+    margin-left:30px;
+}
+
+#overlay-button{
+    border:none;
+    cursor: pointer;
+    border-radius: 40px;
+    background-color: midnightblue;
+    padding: 15px 23px;
+    font-size: 1em;
+    font-family: 'Segoe UI';
+    color: white;
+    margin-left:5px;
+}
+
+#rem-completed, #rem-all, #clear-stor, #pick {
+    border: none;
+    cursor: pointer;
+    border-radius: 40px;
+    background-color: midnightblue;
+    padding: 13px 20px;
+    margin-bottom:3px;
+    font-size: 13px;
+    font-family: 'Segoe UI';
+    color: white;
+}
+
+#input {
+    width: fit-content;
+}
+
+#date{
+    margin-bottom: 0;
+    margin-top: 4px;
+    font-size:13px;
+}
+
+
+.task-title, #sorting-indicator {
+    width: fit-content;
+}
+
+.timestamp {
+    text-align: right;
+    padding-left: 10px;
+    font-size:13px;
+    margin-left:auto;
+}
+
+i{
+    height:2px;
+    width:auto;
+}
+
+.active-todo {
+    background-color: #FFD700;
+}
+
+#sorting-indicator {
+    margin-left: 30px;
+    margin-bottom: 5px;
+    font-family: 'Segoe UI';
+    font-size: 13px;
+    cursor: pointer;
+    color: #313149;
+}
+
+img{
+    height:30px;
+    width:auto;
+}
