@@ -1,143 +1,112 @@
-#main{
-    width:100%;
+body {
+    background: #D8DEDC;
 }
 
-#list{
-    width: 50%;
-    padding-left: 30px;
+header {
+    width: 100%;
+    position: relative;
+    color: white;
+    font-family: Montserrat;
 }
 
-#buttons {
-    width: 50%;
-    padding:10px;
-    margin-top: 10px;
-    padding-left: 30px;
-    margin-bottom:20px;
+.background-image {
+    width: 100%;
+    position: relative;
 }
 
-
-ul{
-    margin:0;
-    padding:0;
+.background-image img {
+    width: 100%;
 }
 
-    ul li {
-        cursor: pointer;
-        position: relative;
-        padding:8px 40px 8px 15px;
-        list-style-type: none;
-        background: #eee;
-        font-size: 16px;
-        margin-bottom:5px;
-        font-family:'Segoe UI';
-        color:midnightblue;
-        display:flex;
-        align-items:center;
-    }
+p{
+    font-family:Montserrat;
+}
 
-
-    /* Darker background-color on hover */
-    ul li:hover {
-        background: #ddd;
-    }
-
-    /* When clicked on, add a background color and strike out text */
-    ul li.checked {
-        background: #888;
-        color: #fff;
-        text-decoration: line-through;
-    }
-
-
-.close {
+.content-container {
     position: absolute;
+    top: 0;
+    left: 0;
     right: 0;
-    top: auto;
-    padding: 8px 16px 8px 16px;
-    color: midnightblue;
-}
-
-h2{
-    margin-left:50px;
-    font-family: 'Segoe UI';
-    color:midnightblue;
-}
-
-input {
-    border-radius: 40px;
-    border: 1px solid midnightblue;
-    padding: 15px 23px;
-    width: 35vw;
-    font-family: Arial;
-    font-size: 1em;
-    margin-left:30px;
-}
-
-#overlay-button{
-    border:none;
-    cursor: pointer;
-    border-radius: 40px;
-    background-color: midnightblue;
-    padding: 15px 23px;
-    font-size: 1em;
-    font-family: 'Segoe UI';
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
     color: white;
-    margin-left:5px;
+    height:fit-content;
 }
 
-#rem-completed, #rem-all, #clear-stor, #pick {
+#head {
+    display: flex;
+    flex-direction: row;
+    margin:2vw 2vw 0 2vw;
+    font-size:1.4vw;
+}
+
+.small{
+    margin: 0 2vw;
+}
+
+    .small p:hover {
+        cursor: pointer;
+        font-weight: 900;
+    }
+
+.brand-name {
+    margin: 0 2vw;
+    margin-right: auto;
+    font-weight: 900;
+}
+
+.big-text {
+    width: 40%;
+    font-size: 5vw;
+    font-weight: bolder;
+    margin-left: 4vw;
+    align-content:center;
+}
+
+    .big-text p {
+        margin: 4vw 0;
+    }
+
+.smaller-text {
+    margin-left: 4vw;
+    font-size: 1.3vw;
+    width: 40%;
+}
+
+.smaller-text p{
+    margin-top: 0;
+}
+
+.button-div {
+    display: inline-flex;
+    padding: 0.2vw 2vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50vw;
+    background: #639654;
     border: none;
-    cursor: pointer;
-    border-radius: 40px;
-    background-color: midnightblue;
-    padding: 13px 20px;
-    margin-bottom:3px;
-    font-size: 13px;
-    font-family: 'Segoe UI';
+    font-family: Montserrat;
     color: white;
-}
-
-#input {
-    width: fit-content;
-}
-
-#date{
-    margin-bottom: 0;
-    margin-top: 4px;
-    font-size:13px;
-}
-
-
-.task-title, #sorting-indicator {
-    width: fit-content;
-}
-
-.timestamp {
-    text-align: right;
-    padding-left: 10px;
-    font-size:13px;
-    margin-left:auto;
-}
-
-i{
-    height:2px;
-    width:auto;
-}
-
-.active-todo {
-    background-color: #FFD700;
-}
-
-#sorting-indicator {
-    margin-left: 30px;
-    margin-bottom: 5px;
-    font-family: 'Segoe UI';
-    font-size: 13px;
     cursor: pointer;
-    color: #313149;
+    font-size: 1.3vw;
+    width: fit-content;
+    margin-left: 4vw;
+    margin-top: 1vw;
 }
 
-img{
-    height:30px;
-    width:auto;
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#big-center-text {
+    font-size: 3vw;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+#text-div{
+    margin-top:3vw;
 }
