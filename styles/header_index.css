@@ -89,7 +89,7 @@ p{
     font-family: Montserrat;
     color: white;
     cursor: pointer;
-    font-size: 1.3vw;
+    font-size: 1.2vw;
     width: fit-content;
     margin-left: 4vw;
     margin-top: 1vw;
@@ -98,15 +98,4 @@ p{
 a {
     text-decoration: none;
     color: inherit;
-}
-
-#big-center-text {
-    font-size: 3vw;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
-#text-div{
-    margin-top:3vw;
 }
