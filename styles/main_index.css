@@ -1,5 +1,5 @@
 main{
-    height:2000px;
+    height:3000px;
 }
 
 body{
@@ -92,7 +92,7 @@ body{
     height: fit-content;
 }
 
-#exp-collctn {
+.green-full {
     width: 100%;
     height: fit-content;
     background: #1C2F1F;
@@ -102,17 +102,17 @@ body{
     margin-top:4vw;
 }
 
-#center-big{
+.center-big{
     width:70%;
     text-align:center;
     margin:4.3vw 0;
 }
 
-    #center-big .small-description {
+    .center-big .small-description {
         color: #E3E5E4;
     }
 
-    #center-big .button-div{
+    .center-big .button-div{
         margin:0;
         margin-top:1vw;
     }
@@ -127,7 +127,7 @@ body{
 .rev {
     width:min-content;
     background: #1C2F1F;
-    border-radius: 4vw;
+    border-radius: 3vw;
     padding:2.4vw;
     display:flex;
     flex-direction:column;
@@ -136,7 +136,7 @@ body{
     .rev img {
         height: 18vw;
         width: 20vw;
-        border-radius: 4vw;
+        border-radius: 3vw;
     }
 
     .rev p{
@@ -152,13 +152,120 @@ body{
 
 #reviews {
     padding: 0 7vw;
-    margin-top: 6vw;
+    margin-top: 5vw;
     display: flex;
     flex-direction:row;
     justify-content: space-between;
+    margin-bottom:10vw;
 }
 
 .author{
     font-size:1vw;
     font-weight:900;
+}
+
+#faq{
+    font-size:2.1vw;
+    font-weight:900;
+    margin-bottom:1vw;
+}
+
+#d-smaller{
+    font-size:1.2vw;
+}
+
+#questions{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin-top:3vw;
+    margin-bottom:7vw;
+}
+
+.question {
+    border-bottom: 1px solid #7A7A7A;
+    width:80%;
+    height: 7vw;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    padding:0 2vw;
+}
+
+.qstn-text, .answer-text{
+    width:fit-content;
+}
+
+.qstn-text{
+    font-size:1.35vw;
+    font-weight:700;
+}
+
+.round-btn {
+    width: fit-content;
+    padding: 0.4vw 1.2vw;
+    background: #E3E5E4;
+    border-radius: 100%;
+    font-size: 2.1vw;
+    font-weight: 400;
+    color: #7A7A7A;
+    margin-left:auto;
+    cursor: pointer;
+}
+
+.answer {
+    display: none;
+    width: 80%;
+    height: 5vw;
+    align-items: center;
+}
+
+.answer-text{
+    width:90%;
+    font-size:1.2vw;
+}
+
+.input-container {
+    display: inline-block;
+    position: relative;
+}
+
+input[type=email] {
+    width: 30vw;
+    padding: 0.9vw;
+    background: #D9D9D9;
+    border: none;
+    border-radius: 30px;
+    font-family: Montserrat;
+}
+
+    input[type=email]:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+
+input[type=submit] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    padding: 1vw 2vw;
+    border-radius: 50vw;
+    background: #639654;
+    font-family: Montserrat;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2vw;
+}
+
+#sign-up .exp-big{
+    margin-bottom:2vw;
+}
+
+#sign-up .small-description{
+    width:65%;
+    margin: auto;
+    margin-bottom: 2vw;
 }
