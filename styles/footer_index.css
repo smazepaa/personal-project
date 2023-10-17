@@ -1,0 +1,44 @@
+footer{
+    margin-top:6vw;
+}
+
+footer .button-div{
+    margin-left:0;
+}
+
+#footer {
+    padding: 2vw;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #7A7A7A;
+    height:fit-content;
+}
+
+#brand {
+    font-weight: 900;
+    width: fit-content;
+    font-size: 1.7vw;
+}
+
+#brand-btn {
+    margin-right: auto;
+}
+
+.column{
+    width:15%;
+    font-size:1.2vw;
+}
+
+.column p{
+    cursor:pointer;
+}
+
+.sous-tittle{
+    font-weight:900;
+    margin-bottom:3vw;
+}
+
+#under-footer{
+    text-align:center;
+    font-size:1vw;
+}

@@ -1,17 +1,17 @@
 function LoadReviews() {
     const reviewsData = [
         {
-            imgSrc: 'images/review1.jpg',
+            imgSrc: 'images/index/review1.jpg',
             reviewText: 'The flowers I ordered for my anniversary were stunning. My wife was thrilled!',
             author: 'Sam Senthel',
         },
         {
-            imgSrc: 'images/review2.jpg',
+            imgSrc: 'images/index/review2.jpg',
             reviewText: 'The flowers are always fresh and beautifully arranged. They never fail to bring a smile to my face.',
             author: 'Jane Doe',
         },
         {
-            imgSrc: 'images/review3.jpg',
+            imgSrc: 'images/index/review3.jpg',
             reviewText: 'Express your love with a beautiful bouquet of fresh flowers.',
             author: 'Sarah Johnson',
         }
@@ -72,6 +72,39 @@ function ShowAnswers() {
     });
 }
 
+function CreateFooterColumns() {
+
+    const texts = [
+        {
+            sousTittle: "About", text1: "Services", text2: "FAQ", text3: "Portfolio" 
+        },
+        {
+            sousTittle: "Careers", text1: "Terms", text2: "Contact", text3: "Refund Policy"
+        },
+        {
+            sousTittle: "Services", text1: "Weddings", text2: "Blogs", text3: "Special Events"
+        },
+        {
+            sousTittle: "Contact Us", text1: "info@blooms.com", text2: "+1 123-456-789", text3: ""
+        }
+    ];
+
+    const container = $('#footer');
+
+    texts.forEach(function (textSet) {
+        const newDiv = $('<div class="column"></div>');
+
+        // Create and append the <p> elements with the different text
+        const sousTittle = $(`<p class="sous-tittle">${textSet.sousTittle}</p>`);
+        const text1 = $(`<p>${textSet.text1}</p>`);
+        const text2 = $(`<p>${textSet.text2}</p>`);
+        const text3 = $(`<p>${textSet.text3}</p>`);
+
+        newDiv.append(sousTittle, text1, text2, text3);
+        container.append(newDiv);
+    });
+}
+
 $(document).ready(function () {
 
     LoadReviews();
@@ -80,4 +113,6 @@ $(document).ready(function () {
         // Toggle the visibility of the next .answer element related to the clicked button
         $(this).closest('.question').next('.answer').slideToggle(300);
     });
+
+    CreateFooterColumns();
 });

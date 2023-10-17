@@ -1,7 +1,3 @@
-main{
-    height:3000px;
-}
-
 body{
     font-family: Montserrat;
 }
@@ -226,18 +222,15 @@ body{
     font-size:1.2vw;
 }
 
-.input-container {
-    display: inline-block;
-    position: relative;
-}
-
 input[type=email] {
     width: 30vw;
     padding: 0.9vw;
     background: #D9D9D9;
     border: none;
-    border-radius: 30px;
     font-family: Montserrat;
+    height:1.3vw;
+    font-size: 1.3vw;
+    margin-right:0;
 }
 
     input[type=email]:focus {
@@ -247,12 +240,12 @@ input[type=email] {
     }
 
 input[type=submit] {
-    position: absolute;
-    top: 0;
-    right: 0;
+    margin-left: 0;
+    right:0;
     border: none;
-    padding: 1vw 2vw;
-    border-radius: 50vw;
+    padding: 0 1vw;
+    height: 3.1vw;
+    line-height: 2.8vw;
     background: #639654;
     font-family: Montserrat;
     color: white;
