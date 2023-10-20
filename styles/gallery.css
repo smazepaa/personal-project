@@ -1,0 +1,191 @@
+body {
+    background: #D8DEDC;
+    font-family: Montserrat;
+}
+
+main{
+    padding: 0 4vw;
+}
+
+header {
+    width: 100%;
+    font-family: Montserrat;
+}
+
+.content-container {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+#head {
+    display: flex;
+    flex-direction: row;
+    margin: 2vw 2vw 0 2vw;
+    font-size: 1.4vw;
+}
+
+.small {
+    margin: 0 2vw;
+}
+
+    .small p:hover {
+        cursor: pointer;
+        font-weight: 900;
+    }
+
+.brand-name {
+    margin: 0 2vw;
+    margin-right: auto;
+    font-weight: 900;
+}
+
+.big-text {
+    width: 50%;
+    margin:auto;
+    font-size: 3vw;
+    font-weight: 900;
+    align-content: center;
+    text-align:center;
+}
+
+    .big-text p {
+        margin-top: 4vw;
+    }
+
+.smaller-text {
+    margin-left: 4vw;
+    font-size: 1.3vw;
+    width: 40%;
+}
+
+    .smaller-text p {
+        margin-top: 0;
+    }
+
+.button-div {
+    display: inline-flex;
+    padding: 0.2vw 2vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50vw;
+    background: #639654;
+    border: none;
+    font-family: Montserrat;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2vw;
+    width: fit-content;
+    margin-left: 4vw;
+    margin-top: 1.5vw;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    width: fit-content;
+}
+
+.image-div {
+    width: 20vw;
+    height: 19vw;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    transition: opacity 0.3s;
+    background:black;
+}
+    .image-div img {
+        width: 20vw;
+        height: 19vw;
+    }
+
+#images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4vw;
+}
+
+.greenf {
+    color: white;
+    background: #1C2F1F;
+}
+
+html{
+    margin-bottom:0;
+    padding-bottom:0;
+}
+
+#big-image{
+    margin-top:6vw;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+}
+#big-image img{
+    width:40vw;
+    height:35vw;
+    margin-right:auto;
+}
+
+
+#text{
+    text-align:right;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+    #text .button-div{
+        margin-left:auto;
+    }
+
+#bqt-name{
+    margin:0;
+    font-size:2.5vw;
+}
+
+#posted {
+    margin-top: 1vw;
+    color: #4A4A4A;
+    font-size:1.2vw;
+}
+
+#components, #price{
+    font-size:1.7vw;
+}
+
+.image-div:hover img{
+    background:black;
+    opacity: 0.4;
+}
+
+.see-more-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+
+.image-div:hover .see-more-text {
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+#back-to-gallery{
+    margin-top:0;
+    font-size:1.3vw;
+    font-weight:900;
+}

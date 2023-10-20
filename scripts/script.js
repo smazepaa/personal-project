@@ -17,7 +17,6 @@ function LoadReviews() {
         }
     ];
 
-
     const reviewsContainer = $('#reviews');
 
     reviewsData.forEach(function (review) {
@@ -39,7 +38,7 @@ function ShowAnswers() {
     const qaData = [
         {
             question: "What are your delivery options?",
-            answer: "We offer various delivery options, including standard and express delivery. Please check our website for more details."
+            answer: "We offer letious delivery options, including standard and express delivery. Please check our website for more details."
         },
         {
             question: "What is your return policy?",
@@ -94,7 +93,6 @@ function CreateFooterColumns() {
     texts.forEach(function (textSet) {
         const newDiv = $('<div class="column"></div>');
 
-        // Create and append the <p> elements with the different text
         const sousTittle = $(`<p class="sous-tittle">${textSet.sousTittle}</p>`);
         const text1 = $(`<p>${textSet.text1}</p>`);
         const text2 = $(`<p>${textSet.text2}</p>`);
@@ -105,14 +103,60 @@ function CreateFooterColumns() {
     });
 }
 
+function DisplayGallery() {
+    let imageUrls = [
+        "images/gallery/gallery1.jpg",
+        "images/gallery/gallery2.jpg",
+        "images/gallery/gallery3.jpg",
+        "images/gallery/gallery4.jpg",
+        "images/gallery/gallery5.jpg",
+        "images/gallery/gallery6.jpg",
+        "images/gallery/gallery7.jpg",
+        "images/gallery/gallery8.jpg",
+        "images/gallery/gallery9.jpg"
+    ];
+
+    let $imageContainer = $("#images");
+    let $bigImage = $("#big-image-src");
+
+    function handleSeeMoreClick(imageSrc) {
+        console.log(imageSrc);
+        $bigImage.attr("src", imageSrc);
+        togglePage("page2");
+    }
+
+    for (let i = 0; i < 9; i++) {
+        let $imageDiv = $('<div class="image-div">');
+        let imageSrc = imageUrls[i % imageUrls.length];
+        let $image = $('<img src="' + imageSrc + '">');
+
+        let $seeMoreText = $('<div class="see-more-text" data-image-src="' + imageSrc + '">See More</div>');
+
+        $seeMoreText.on("click", function () {
+            let clickedImageSrc = $(this).data("image-src");
+            handleSeeMoreClick(clickedImageSrc);
+        });
+
+        $imageDiv.append($image, $seeMoreText);
+        $imageContainer.append($imageDiv);
+    }
+}
+
+function togglePage(page) {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "none";
+    document.getElementById(page).style.display = "block";
+}
+
 $(document).ready(function () {
 
     LoadReviews();
     ShowAnswers();
     $(".round-btn").click(function () {
-        // Toggle the visibility of the next .answer element related to the clicked button
         $(this).closest('.question').next('.answer').slideToggle(300);
     });
 
     CreateFooterColumns();
+
+    DisplayGallery();
 });
