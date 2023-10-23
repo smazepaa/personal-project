@@ -116,13 +116,93 @@ function DisplayGallery() {
         "images/gallery/gallery9.jpg"
     ];
 
+    const imageDetails = [
+        {
+            imageSrc: "images/gallery/gallery1.jpg",
+            name: "Closed peonies bouquet",
+            date: "October 11, 2023",
+            components: "peonies",
+            price: 1000,
+        },
+        {
+            imageSrc: "images/gallery/gallery2.jpg",
+            name: "Puffy Peonies",
+            date: "October 2, 2023",
+            components: "peonies",
+            price: 900,
+        },
+        {
+            imageSrc: "images/gallery/gallery3.jpg",
+            name: "Fresh heartwarming bouquet",
+            date: "August 29, 2023",
+            components: "roses, hydrangeas, carnations, tulips",
+            price: 1200,
+        },
+        {
+            imageSrc: "images/gallery/gallery4.jpg",
+            name: "Warm white tulips",
+            date: "August 8, 2023",
+            components: "tulips",
+            price: 800,
+        },
+        {
+            imageSrc: "images/gallery/gallery5.jpg",
+            name: "Another Bouquet",
+            date: "Another Date",
+            components: "Different Components",
+            price: "Another Price",
+        },
+        {
+            imageSrc: "images/gallery/gallery6.jpg",
+            name: "Another Bouquet",
+            date: "Another Date",
+            components: "Different Components",
+            price: "Another Price",
+        },
+        {
+            imageSrc: "images/gallery/gallery7.jpg",
+            name: "Another Bouquet",
+            date: "Another Date",
+            components: "Different Components",
+            price: "Another Price",
+        },
+        {
+            imageSrc: "images/gallery/gallery8.jpg",
+            name: "Another Bouquet",
+            date: "Another Date",
+            components: "Different Components",
+            price: "Another Price",
+        },
+        {
+            imageSrc: "images/gallery/gallery9.jpg",
+            name: "Warm spring arrangement",
+            date: "May 23, 2023",
+            components: "peonies, roses, lilies, orchids",
+            price: 1500,
+        }
+    ];
+
     let $imageContainer = $("#images");
     let $bigImage = $("#big-image-src");
+    let $title = $('#bqt-name');
+    let $posted = $('posted');
 
     function handleSeeMoreClick(imageSrc) {
         console.log(imageSrc);
-        $bigImage.attr("src", imageSrc);
-        togglePage("page2");
+        const details = imageDetails.find(item => item.imageSrc === imageSrc);
+
+        if (details) {
+            $bigImage.attr("src", imageSrc);
+
+            document.title = details.name;
+
+            $("#bqt-name").text(details.name);
+            $("#posted").text("posted " + details.date);
+            $("#components").html("<b>Components:</b><br />" + details.components);
+            $("#price").html("<b>Price:</b> " + details.price + "UAH");
+
+            togglePage("page2");
+        }
     }
 
     for (let i = 0; i < 9; i++) {
@@ -143,10 +223,38 @@ function DisplayGallery() {
 }
 
 function togglePage(page) {
-    document.getElementById("page1").style.display = "none";
-    document.getElementById("page2").style.display = "none";
-    document.getElementById(page).style.display = "block";
+    console.log(page);
+    var currentPage = getCurrentPage();
+    if (page !== currentPage) {
+        document.getElementById(currentPage).style.display = "none";
+        document.getElementById(page).style.display = "block";
+
+        // Scroll to the top of the page
+        window.scrollTo(0, 0);
+
+        // Use the HTML5 History API to push a state when toggling pages
+        window.history.pushState({ page: page }, `#${page}`);
+        console.log(window.history);
+    }
 }
+
+function getCurrentPage() {
+    // Determine the current page based on the visible element
+    if (document.getElementById("page1").style.display !== "none") {
+        return "page1";
+    } else {
+        return "page2";
+    }
+}
+
+
+// Add an event listener to handle popstate (browser back/forward) events
+window.addEventListener("popstate", function (event) {
+    if (event.state && event.state.page) {
+        console.log(event.state.page);
+        togglePage(event.state.page);
+    }
+});
 
 $(document).ready(function () {
 
