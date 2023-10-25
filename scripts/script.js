@@ -1,3 +1,68 @@
+const imageDetails = [
+    {
+        imageSrc: "images/gallery/gallery1.jpg",
+        name: "Closed peonies bouquet",
+        date: "October 11, 2023",
+        components: "peonies",
+        price: 1000,
+    },
+    {
+        imageSrc: "images/gallery/gallery2.jpg",
+        name: "Puffy Peonies",
+        date: "October 2, 2023",
+        components: "peonies",
+        price: 900,
+    },
+    {
+        imageSrc: "images/gallery/gallery3.jpg",
+        name: "Fresh heartwarming bouquet",
+        date: "August 29, 2023",
+        components: "roses, hydrangeas, carnations, tulips",
+        price: 1200,
+    },
+    {
+        imageSrc: "images/gallery/gallery4.jpg",
+        name: "Warm white tulips",
+        date: "August 8, 2023",
+        components: "tulips",
+        price: 800,
+    },
+    {
+        imageSrc: "images/gallery/gallery5.jpg",
+        name: "Another Bouquet",
+        date: "Another Date",
+        components: "Different Components",
+        price: "Another Price",
+    },
+    {
+        imageSrc: "images/gallery/gallery6.jpg",
+        name: "Another Bouquet",
+        date: "Another Date",
+        components: "Different Components",
+        price: "Another Price",
+    },
+    {
+        imageSrc: "images/gallery/gallery7.jpg",
+        name: "Another Bouquet",
+        date: "Another Date",
+        components: "Different Components",
+        price: "Another Price",
+    },
+    {
+        imageSrc: "images/gallery/gallery8.jpg",
+        name: "Another Bouquet",
+        date: "Another Date",
+        components: "Different Components",
+        price: "Another Price",
+    },
+    {
+        imageSrc: "images/gallery/gallery9.jpg",
+        name: "Warm spring arrangement",
+        date: "May 23, 2023",
+        components: "peonies, roses, lilies, orchids",
+        price: 1500,
+    }
+];
 function LoadReviews() {
     const reviewsData = [
         {
@@ -116,72 +181,6 @@ function DisplayGallery() {
         "images/gallery/gallery9.jpg"
     ];
 
-    const imageDetails = [
-        {
-            imageSrc: "images/gallery/gallery1.jpg",
-            name: "Closed peonies bouquet",
-            date: "October 11, 2023",
-            components: "peonies",
-            price: 1000,
-        },
-        {
-            imageSrc: "images/gallery/gallery2.jpg",
-            name: "Puffy Peonies",
-            date: "October 2, 2023",
-            components: "peonies",
-            price: 900,
-        },
-        {
-            imageSrc: "images/gallery/gallery3.jpg",
-            name: "Fresh heartwarming bouquet",
-            date: "August 29, 2023",
-            components: "roses, hydrangeas, carnations, tulips",
-            price: 1200,
-        },
-        {
-            imageSrc: "images/gallery/gallery4.jpg",
-            name: "Warm white tulips",
-            date: "August 8, 2023",
-            components: "tulips",
-            price: 800,
-        },
-        {
-            imageSrc: "images/gallery/gallery5.jpg",
-            name: "Another Bouquet",
-            date: "Another Date",
-            components: "Different Components",
-            price: "Another Price",
-        },
-        {
-            imageSrc: "images/gallery/gallery6.jpg",
-            name: "Another Bouquet",
-            date: "Another Date",
-            components: "Different Components",
-            price: "Another Price",
-        },
-        {
-            imageSrc: "images/gallery/gallery7.jpg",
-            name: "Another Bouquet",
-            date: "Another Date",
-            components: "Different Components",
-            price: "Another Price",
-        },
-        {
-            imageSrc: "images/gallery/gallery8.jpg",
-            name: "Another Bouquet",
-            date: "Another Date",
-            components: "Different Components",
-            price: "Another Price",
-        },
-        {
-            imageSrc: "images/gallery/gallery9.jpg",
-            name: "Warm spring arrangement",
-            date: "May 23, 2023",
-            components: "peonies, roses, lilies, orchids",
-            price: 1500,
-        }
-    ];
-
     let $imageContainer = $("#images");
     let $bigImage = $("#big-image-src");
     let $title = $('#bqt-name');
@@ -223,7 +222,7 @@ function DisplayGallery() {
 }
 
 function togglePage(page) {
-    console.log(page);
+
     var currentPage = getCurrentPage();
     if (page !== currentPage) {
         document.getElementById(currentPage).style.display = "none";
@@ -235,11 +234,15 @@ function togglePage(page) {
         // Use the HTML5 History API to push a state when toggling pages
         window.history.pushState({ page: page }, `#${page}`);
         console.log(window.history);
+
+        if (page === "page2") {
+            let img = $('#big-image-src').attr('src');
+            populateBouquetExplore(img);
+        }
     }
 }
 
 function getCurrentPage() {
-    // Determine the current page based on the visible element
     if (document.getElementById("page1").style.display !== "none") {
         return "page1";
     } else {
@@ -247,14 +250,46 @@ function getCurrentPage() {
     }
 }
 
-
-// Add an event listener to handle popstate (browser back/forward) events
 window.addEventListener("popstate", function (event) {
     if (event.state && event.state.page) {
         console.log(event.state.page);
         togglePage(event.state.page);
     }
 });
+
+function getRandomGalleryImages(excludeImage, count) {
+    const galleryImages = imageDetails
+        .filter(image => image.imageSrc !== excludeImage)
+        .map(image => image.imageSrc);
+
+    for (let i = galleryImages.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [galleryImages[i], galleryImages[j]] = [galleryImages[j], galleryImages[i]];
+    }
+
+    return galleryImages.slice(0, count);
+}
+
+function populateBouquetExplore(currentImageSrc) {
+    const exploreContainer = document.getElementById("bqt-explore");
+
+    const randomImages = getRandomGalleryImages(currentImageSrc, 5);
+
+    exploreContainer.innerHTML = "";
+
+    randomImages.forEach((imageSrc, index) => {
+        const imageDiv = document.createElement("div");
+        const imageElement = document.createElement("img");
+
+        imageElement.src = imageSrc;
+        imageElement.addEventListener("click", function () {
+            handleSeeMoreClick(imageSrc);
+        });
+
+        imageDiv.appendChild(imageElement);
+        exploreContainer.appendChild(imageDiv);
+    });
+}
 
 $(document).ready(function () {
 
