@@ -29,31 +29,31 @@ const imageDetails = [
     },
     {
         imageSrc: "images/gallery/gallery5.jpg",
-        name: "Another Bouquet",
-        date: "Another Date",
-        components: "Different Components",
-        price: "Another Price",
+        name: "Minimalistic white arrangement",
+        date: "September 12, 2023",
+        components: "roses, gypsophilas",
+        price: 700,
     },
     {
         imageSrc: "images/gallery/gallery6.jpg",
-        name: "Another Bouquet",
-        date: "Another Date",
-        components: "Different Components",
-        price: "Another Price",
+        name: "Unusual flower combination",
+        date: "August 17, 2023",
+        components: "tulips, eucalyptus and smth else",
+        price: 1300,
     },
     {
         imageSrc: "images/gallery/gallery7.jpg",
-        name: "Another Bouquet",
-        date: "Another Date",
-        components: "Different Components",
-        price: "Another Price",
+        name: "White lilies in paper",
+        date: "September 1, 2023",
+        components: "lilies",
+        price: 1000,
     },
     {
         imageSrc: "images/gallery/gallery8.jpg",
-        name: "Another Bouquet",
-        date: "Another Date",
-        components: "Different Components",
-        price: "Another Price",
+        name: "Miniature white tulips",
+        date: "July 26, 2023",
+        components: "tulips",
+        price: 900,
     },
     {
         imageSrc: "images/gallery/gallery9.jpg",
@@ -136,6 +136,27 @@ function ShowAnswers() {
     });
 }
 
+function handleSeeMoreClick(imageSrc) {
+
+    let $bigImage = $("#big-image-src");
+
+    console.log(imageSrc);
+    const details = imageDetails.find(item => item.imageSrc === imageSrc);
+
+    if (details) {
+        $bigImage.attr("src", imageSrc);
+
+        document.title = details.name;
+
+        $("#bqt-name").text(details.name);
+        $("#posted").text("posted " + details.date);
+        $("#components").html("<b>Components:</b><br />" + details.components);
+        $("#price").html("<b>Price:</b> " + details.price + "UAH");
+
+        togglePage("page2");
+    }
+}
+
 function CreateFooterColumns() {
 
     const texts = [
@@ -182,27 +203,6 @@ function DisplayGallery() {
     ];
 
     let $imageContainer = $("#images");
-    let $bigImage = $("#big-image-src");
-    let $title = $('#bqt-name');
-    let $posted = $('posted');
-
-    function handleSeeMoreClick(imageSrc) {
-        console.log(imageSrc);
-        const details = imageDetails.find(item => item.imageSrc === imageSrc);
-
-        if (details) {
-            $bigImage.attr("src", imageSrc);
-
-            document.title = details.name;
-
-            $("#bqt-name").text(details.name);
-            $("#posted").text("posted " + details.date);
-            $("#components").html("<b>Components:</b><br />" + details.components);
-            $("#price").html("<b>Price:</b> " + details.price + "UAH");
-
-            togglePage("page2");
-        }
-    }
 
     for (let i = 0; i < 9; i++) {
         let $imageDiv = $('<div class="image-div">');
@@ -250,6 +250,38 @@ function getCurrentPage() {
     }
 }
 
+function loadPage2WithImage(imageSrc) {
+
+    handleSeeMoreClick(imageSrc);
+
+    // Clear the existing small explore images
+    const exploreContainer = document.getElementById("bqt-explore");
+    exploreContainer.innerHTML = "";
+
+    // Generate new random images for the small explore section
+    const randomImages = getRandomGalleryImages(imageSrc, 6);
+
+    // Add the new random images to the small explore section
+    randomImages.forEach((imageSrc, index) => {
+        const imageDiv = document.createElement("div");
+        const imageElement = document.createElement("img");
+
+        const uniqueId = `explore-image-${index}`;
+        imageElement.id = uniqueId;
+        imageElement.src = imageSrc;
+
+        imageElement.addEventListener("click", function () {
+            loadPage2WithImage(imageSrc);
+        });
+
+        imageDiv.appendChild(imageElement);
+        exploreContainer.appendChild(imageDiv);
+    });
+
+    // Toggle to Page 2
+    togglePage("page2");
+}
+
 window.addEventListener("popstate", function (event) {
     if (event.state && event.state.page) {
         console.log(event.state.page);
@@ -273,23 +305,31 @@ function getRandomGalleryImages(excludeImage, count) {
 function populateBouquetExplore(currentImageSrc) {
     const exploreContainer = document.getElementById("bqt-explore");
 
-    const randomImages = getRandomGalleryImages(currentImageSrc, 5);
+    const randomImages = getRandomGalleryImages(currentImageSrc, 6);
 
     exploreContainer.innerHTML = "";
 
+    // Modify the code that populates the small explore images
     randomImages.forEach((imageSrc, index) => {
         const imageDiv = document.createElement("div");
         const imageElement = document.createElement("img");
 
+        const uniqueId = `explore-image-${index}`; // Unique ID for each image
+
+        imageElement.id = uniqueId; // Assign the unique ID
         imageElement.src = imageSrc;
+
         imageElement.addEventListener("click", function () {
-            handleSeeMoreClick(imageSrc);
+            // Handle click event to load Page 2 with the selected image
+            loadPage2WithImage(imageSrc);
         });
 
         imageDiv.appendChild(imageElement);
         exploreContainer.appendChild(imageDiv);
     });
 }
+
+
 
 $(document).ready(function () {
 

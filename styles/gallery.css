@@ -194,9 +194,26 @@ html{
     width:100%;
     display:flex;
     flex-direction:row;
+    justify-content:space-between;
 }
 
 #bqt-explore img{
     width:13vw;
     height:13vw;
+}
+
+#expl-others {
+    margin: 10vw 1.3vw 0 1.3vw;
+    text-align: center;
+    font-size: 1.12em;
+    font-weight: 500;
+}
+
+#expl-others img{
+    cursor:pointer;
+}
+
+
+.button-div:hover {
+    background: #316422;
 }
