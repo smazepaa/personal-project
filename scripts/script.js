@@ -329,6 +329,36 @@ function populateBouquetExplore(currentImageSrc) {
     });
 }
 
+// Get all quantity input elements on the page
+const quantityInputs = document.querySelectorAll('.quantity');
+
+quantityInputs.forEach(input => {
+    const decrementButton = input.previousElementSibling;
+    const incrementButton = input.nextElementSibling;
+
+    decrementButton.addEventListener('click', () => {
+        // Decrease the quantity when the decrement button is clicked
+        if (input.value > input.min) {
+            input.value = parseInt(input.value) - 1;
+        }
+    });
+
+    incrementButton.addEventListener('click', () => {
+        // Increase the quantity when the increment button is clicked
+        if (input.value < input.max || !input.max) {
+            input.value = parseInt(input.value) + 1;
+        }
+    });
+
+    input.addEventListener('input', () => {
+        // Ensure the entered value is within the specified min and max limits
+        if (input.value < input.min) {
+            input.value = input.min;
+        } else if (input.max && input.value > input.max) {
+            input.value = input.max;
+        }
+    });
+});
 
 
 $(document).ready(function () {

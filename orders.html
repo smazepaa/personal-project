@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery</title>
     <link rel="stylesheet" type="text/css" href="styles\gallery.css">
+    <link rel="stylesheet" type="text/css" href="styles\orders.css">
     <link rel="stylesheet" type="text/css" href="styles\footer_index.css">
     <script src="node_modules\jquery\dist\jquery.min.js"></script>
     <link rel="icon" href="images\icon.png">
@@ -21,10 +22,10 @@
                     <a href="index.html"><p>Home</p></a>
                 </div>
                 <div class="small">
-                    <a href="#"><p><b>Gallery</b></p></a>
+                    <a href="gallery.html"><p>Gallery</p></a>
                 </div>
                 <div class="small">
-                    <a href="orders.html"><p>Orders</p></a>
+                    <a href="#"><p><b>Orders</b></p></a>
                 </div>
                 <div class="small">
                     <p>Contact</p>
@@ -34,45 +35,31 @@
     </header>
 
     <main>
-        
-        <div id="page1">
-            <div class="big-text">
-                <p>
-                    Discover our latest and most popular flower arrangements
-                </p>
-            </div>
+        <h2>Your orders</h2>
 
-            <div id="images"></div>
-        </div>
-        
+        <div id="current">
+            <h3>Current orders</h3>
 
-        <div id="page2" style="display: none;">
-
-            <a id="back-to-gallery"
-               href="#" onclick="togglePage('page1')"><p>Back to gallery</p></a>
-            <div id="big-image">
-                <img id="big-image-src" src="" />
-
-                <div id="text">
-                    <h3 id="bqt-name"></h3>
-                    <p id="posted"></p>
-                    <p id="components"></p>
-                    <p id="price"></p>
-                    <div class="button-div">
-                        <p>Order Now</p>
-                    </div>
+            <div class="order">
+                <img src="images/gallery/gallery1.jpg" />
+                <div class="ord-text">
+                    <p id="bqt-title">Spring white arrangement</p>
+                    <p id="bqt-price">price: 1500UAH</p>
                 </div>
-            </div>
 
-            <div id="expl-others">
-                <div class="center-text">
-                    <p>Explore other bouquets</p>
+                <div class="quantity-input">
+                    <button class="decrement-button">-</button>
+                    <input type="number" class="quantity" value="1" min="1">
+                    <button class="increment-button">+</button>
                 </div>
-                <div id="bqt-explore">
-                    
-                </div>
+
             </div>
         </div>
+
+        <div id="previous">
+            <h3>Previous orders</h3>
+        </div>
+
     </main>
 
     <footer class="greenf">
@@ -86,7 +73,7 @@
             </div>
         </div>
         <div id="under-footer">
-            <p>© 2023 Bloom Flower Shop, we love our customers!</p>
+            <p>� 2023 Bloom Flower Shop, we love our customers!</p>
         </div>
     </footer>
 

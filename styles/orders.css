@@ -1,0 +1,54 @@
+.order {
+    background: #E3E5E4;
+    padding:1.7vw;
+    display:flex;
+    flex-direction:row;
+    align-content:center;
+}
+
+.order img{
+    width: 8.7vw;
+    height: 8.7vw;
+    margin-right: 4vw;
+}
+
+.ord-text{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+.ord-text p{
+    margin:0;
+}
+
+.quantity-input {
+    display: flex;
+    align-items: center;
+    margin-left:auto;
+    font-size:1em;
+}
+
+.quantity {
+    width: 40px; 
+    height: 2vw;
+    text-align: center;
+    border: none;
+    background: #F1F3F2;
+}
+
+.decrement-button,
+.increment-button {
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    background:none;
+    border: none;
+    outline: none;
+    font-size:1.5em;
+}
+
+.quantity::-webkit-inner-spin-button,
+.quantity::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
