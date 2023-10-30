@@ -7,12 +7,16 @@
     <link rel="stylesheet" type="text/css" href="styles\header_index.css">
     <link rel="stylesheet" type="text/css" href="styles\main_index.css">
     <link rel="stylesheet" type="text/css" href="styles\footer_index.css">
+    <link rel="stylesheet" type="text/css" href="styles\header_index.css">
+    <link rel="stylesheet" type="text/css" href="styles\gallery.css">
+    <link rel="stylesheet" type="text/css" href="styles\orders.css">
     <script src="node_modules\jquery\dist\jquery.min.js"></script>
     <link rel="icon" href="images\icon.png">
 </head>
 <body>
 
-    <header>
+    <!-- Home Page Header -->
+    <header class="page-header home-header">
         <div class="background-image">
             <img src="images\index\bg_image_header.jpg" />
         </div>
@@ -22,13 +26,13 @@
                     <p>Bloom</p>
                 </div>
                 <div class="small">
-                    <a href="/" onclick="navigateTo('/all.html'); return false;"><p><b>Home</b></p></a>
+                    <a href="#" data-page="home" class="active"><p>Home</p></a>
                 </div>
                 <div class="small">
-                    <a href="gallery.html"><p>Gallery</p></a>
+                    <a href="#" data-page="gallery"><p>Gallery</p></a>
                 </div>
                 <div class="small">
-                    <a href="orders.html"><p>Orders</p></a>
+                    <a href="#" data-page="orders"><p>Orders</p></a>
                 </div>
                 <div class="small">
                     <p>Contact</p>
@@ -50,9 +54,9 @@
         </div>
     </header>
 
+    <!-- Content for the Home page -->
     <main>
-
-        <div id="home">
+        <div id="page-home" class="page">
             <div class="text-div">
                 <p class="big-center-text">Why Choose Us</p>
                 <p class="description">
@@ -71,6 +75,13 @@
                         Our fresh flowers are sourced from local growers and arranged by
                         our talented florists
                     </p>
+
+                    <p>
+                        Hover over this text:
+                        <span class="word" data-word="rose">rose</span>
+                        <span class="word" data-word="lily">lily</span>
+                    </p>
+                    <div id="overlay"></div>
 
                     <div class="button-div">
                         <p>Learn More</p>
@@ -156,11 +167,109 @@
                 </div>
             </div>
         </div>
-
     </main>
 
-    <footer>
-        <div id="footer">
+    <!-- Other Pages Header -->
+    <header class="page-header other-header" style="display: none;">
+        <div class="content-container">
+            <div id="head">
+                <div class="brand-name">
+                    <p>Bloom</p>
+                </div>
+                <div class="small">
+                    <a href="#" data-page="home" class="active"><p>Home</p></a>
+                </div>
+                <div class="small">
+                    <a href="#" data-page="gallery"><p>Gallery</p></a>
+                </div>
+                <div class="small">
+                    <a href="#" data-page="orders"><p>Orders</p></a>
+                </div>
+                <div class="small">
+                    <p>Contact</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Other Pages Content -->
+    <main>
+        <!-- Content for the Gallery page -->
+        <div id="page-gallery" class="page">
+            <div id="page1">
+                <div class="big-text">
+                    <p>
+                        Discover our latest and most popular flower arrangements
+                    </p>
+                </div>
+
+                <div id="images"></div>
+            </div>
+        </div>
+
+        <div id="page-other" class="page" style="display: none;">
+            <a id="back-to-gallery" href="#" onclick="togglePage('page-gallery')">
+                <p>Back to gallery</p>
+            </a>
+            <div id="big-image">
+                <img id="big-image-src" src="" />
+
+                <div id="text">
+                    <h3 id="bqt-name"></h3>
+                    <p id="posted"></p>
+                    <div id="components"></div>
+                    <p id="price"></p>
+                    <div class="button-div">
+                        <p>Order Now</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="expl-others">
+                <div class="center-text">
+                    <p>Explore other bouquets</p>
+                </div>
+                <div id="bqt-explore">
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Content for the Orders page -->
+        <div id="page-orders" class="page" style="display: none;">
+            <h2>Your orders</h2>
+
+            <div id="current">
+                <h3>Current orders</h3>
+
+                <div class="order">
+                    <img src="images/gallery/gallery9.jpg" />
+                    <div class="ord-text">
+                        <p class="ord-title">
+                            Warm spring arrangement
+                        </p>
+                        <p class="bqt-price">price: 1500UAH</p>
+                    </div>
+
+                    <div class="quantity-input">
+                        <button class="decrement-button">-</button>
+                        <input type="number" class="quantity" value="1" min="1">
+                        <button class="increment-button">+</button>
+                    </div>
+                </div>
+
+                <div class="button-div">Checkout</div>
+            </div>
+
+            <div id="previous">
+                <h3>Previous orders</h3>
+            </div>
+        </div>
+    </main>
+
+    <!-- Home Page Footer -->
+    <footer id="home-footer">
+        <div class="footer">
             <div id="brand-btn">
                 <p id="brand">Bloom</p>
 
@@ -170,7 +279,23 @@
             </div>
         </div>
         <div id="under-footer">
-            <p>� 2023 Bloom Flower Shop, we love our customers!</p>
+            <p>© 2023 Bloom Flower Shop, we love our customers!</p>
+        </div>
+    </footer>
+
+    <!-- Other Pages Footer -->
+    <footer class="greenf" id="other-footer" style="display: none;">
+        <div class="footer">
+            <div id="brand-btn">
+                <p id="brand">Bloom</p>
+
+                <div class="button-div">
+                    <p>Shop now</p>
+                </div>
+            </div>
+        </div>
+        <div id="under-footer">
+            <p>© 2023 Bloom Flower Shop, we love our customers!</p>
         </div>
     </footer>
 

@@ -6,7 +6,7 @@ footer .button-div{
     margin-left:0;
 }
 
-#footer {
+.footer {
     padding: 2vw;
     display: flex;
     flex-direction: row;

@@ -176,7 +176,7 @@ function handleSeeMoreClick(imageSrc) {
         $("#price").html("<b>Price:</b> " + details.price + "UAH");
 
         // Show the page
-        togglePage("page2");
+        togglePage("page-other");
         fetchData();
     }
 }
@@ -258,7 +258,7 @@ const togglePage = (page) => {
         window.history.pushState({ page: page }, `#${page}`);
         console.log(window.history);
 
-        if (page === "page2") {
+        if (page === "page-other") {
             const img = $('#big-image-src').attr('src');
             //fetchData();
             populateBouquetExplore(img);
@@ -266,15 +266,17 @@ const togglePage = (page) => {
     }
 }
 
+
 function getCurrentPage() {
-    if (document.getElementById("page1").style.display !== "none") {
-        return "page1";
+    if (document.getElementById("page-gallery").style.display !== "none") {
+        return "page-gallery";
     } else {
-        return "page2";
+        return "page-other";
     }
 }
 
 function loadPage2WithImage(imageSrc) {
+    console.log("loadPage2WithImage called with imageSrc: " + imageSrc);
 
     handleSeeMoreClick(imageSrc);
 
@@ -284,6 +286,7 @@ function loadPage2WithImage(imageSrc) {
 
     // Generate new random images for the small explore section
     const randomImages = getRandomGalleryImages(imageSrc, 6);
+    console.log("Random explore images: " + randomImages);
 
     // Add the new random images to the small explore section
     randomImages.forEach((imageSrc, index) => {
@@ -303,7 +306,7 @@ function loadPage2WithImage(imageSrc) {
     });
 
     // Toggle to Page 2
-    togglePage("page2");
+    togglePage("page-other");
 }
 
 function fetchData() {
@@ -394,7 +397,9 @@ function getRandomGalleryImages(excludeImage, count) {
     return galleryImages.slice(0, count);
 }
 
+//doesn't enter this function ????
 function populateBouquetExplore(currentImageSrc) {
+    console.log("populateBouquetExplore", currentImageSrc);
     const exploreContainer = document.getElementById("bqt-explore");
 
     const randomImages = getRandomGalleryImages(currentImageSrc, 6);
