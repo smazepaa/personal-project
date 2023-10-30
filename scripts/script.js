@@ -198,7 +198,7 @@ function CreateFooterColumns() {
         }
     ];
 
-    const container = $('#footer');
+    const container = $('.footer');
 
     texts.forEach(function (textSet) {
         const newDiv = $('<div class="column"></div>');
