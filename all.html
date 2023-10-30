@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom</title>
+    <link rel="stylesheet" type="text/css" href="styles\header_index.css">
+    <link rel="stylesheet" type="text/css" href="styles\main_index.css">
+    <link rel="stylesheet" type="text/css" href="styles\footer_index.css">
+    <script src="node_modules\jquery\dist\jquery.min.js"></script>
+    <link rel="icon" href="images\icon.png">
+</head>
+<body>
+
+    <header>
+        <div class="background-image">
+            <img src="images\index\bg_image_header.jpg" />
+        </div>
+        <div class="content-container">
+            <div id="head">
+                <div class="brand-name">
+                    <p>Bloom</p>
+                </div>
+                <div class="small">
+                    <a href="/" onclick="navigateTo('/all.html'); return false;"><p><b>Home</b></p></a>
+                </div>
+                <div class="small">
+                    <a href="gallery.html"><p>Gallery</p></a>
+                </div>
+                <div class="small">
+                    <a href="orders.html"><p>Orders</p></a>
+                </div>
+                <div class="small">
+                    <p>Contact</p>
+                </div>
+            </div>
+            <div class="big-text">
+                <p>
+                    Beautiful Blooms Delivered to Your Doorstep
+                </p>
+            </div>
+
+            <div class="smaller-text">
+                <p>Discover a wide selection of stunning flowers, bouquets, and floral arrangements</p>
+            </div>
+
+            <div class="button-div">
+                <p>Shop now</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <div id="home">
+            <div class="text-div">
+                <p class="big-center-text">Why Choose Us</p>
+                <p class="description">
+                    We pride ourselves on delivering the highest quality flowers
+                    and providing exceptional customer service
+                </p>
+            </div>
+
+            <div class="why-divs">
+                <div id="fresh-image">
+                    <img src="images\index\fresh_flowers.jpg" />
+                </div>
+                <div id="fresh-text">
+                    <p class="small-title">Fresh flowers</p>
+                    <p class="small-description">
+                        Our fresh flowers are sourced from local growers and arranged by
+                        our talented florists
+                    </p>
+
+                    <div class="button-div">
+                        <p>Learn More</p>
+                    </div>
+                    <div class="transp-btn">
+                        <p>Order Now</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-divs">
+                <div id="cust-text">
+                    <p class="small-title">Customized Flower Arrangements</p>
+                    <p class="small-description">
+                        Our fresh flowers are sourced from local growers and arranged by
+                        our talented florists
+                    </p>
+
+                    <div class="button-div">
+                        <p>Browse Collection</p>
+                    </div>
+                    <div class="transp-btn">
+                        <p>Order Now</p>
+                    </div>
+                </div>
+                <div id="cust-image">
+                    <img src="images\index\cust_flowers.jpg" />
+                </div>
+            </div>
+
+            <div class="green-full">
+                <div class="center-big">
+                    <p class="exp-big">
+                        Make your wedding day unforgettable
+                        with our exquisite floral designs and
+                        create the perfect ambiance for your special day
+                    </p>
+                    <p class="small-description">
+                        Explore Our Collection
+                    </p>
+                    <div class="button-div">
+                        <p>See the gallery</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-div">
+                <p class="big-center-text">What Our Customers Say</p>
+                <p class="description">
+                    We pride ourselves on delivering the highest quality
+                    flowers and providing exceptional customer service
+                </p>
+            </div>
+
+            <div id="reviews"></div>
+
+            <div class="text-div">
+                <p id="faq">Frequently Asked Questions</p>
+                <p class="description" id="d-smaller">
+                    Contact us for any questions or inquiries
+                </p>
+            </div>
+
+            <div id="questions"></div>
+
+            <div class="green-full" id="sign-up">
+                <div class="center-big">
+                    <p class="exp-big">
+                        Sign up for our newsletter
+                    </p>
+                    <p class="small-description">
+                        Subscribe to our newsletter to receive
+                        updates on our latest flower collections, special offers, and more
+                    </p>
+
+                    <form id="newsletter-form">
+                        <div class="input-container">
+                            <input type="email" id="email"
+                                   name="email" placeholder="Enter your email..." required>
+                            <input type="submit" value="Sign Up">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div id="footer">
+            <div id="brand-btn">
+                <p id="brand">Bloom</p>
+
+                <div class="button-div">
+                    <p>Shop now</p>
+                </div>
+            </div>
+        </div>
+        <div id="under-footer">
+            <p>� 2023 Bloom Flower Shop, we love our customers!</p>
+        </div>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/router.js"></script>
+</body>
+</html>

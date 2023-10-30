@@ -263,3 +263,20 @@ input[type=submit] {
     margin: auto;
     margin-bottom: 2vw;
 }
+
+
+#overlay {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    display: none;
+    max-width:300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.8em;
+    width: fit-content;
+}
+
+.word, .component{
+    cursor:pointer;
+}

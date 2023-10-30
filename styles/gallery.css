@@ -217,3 +217,7 @@ html{
 .button-div:hover {
     background: #316422;
 }
+
+span{
+    font-size: 1em;
+}

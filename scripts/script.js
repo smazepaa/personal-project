@@ -3,63 +3,63 @@ const imageDetails = [
         imageSrc: "images/gallery/gallery1.jpg",
         name: "Closed peonies bouquet",
         date: "October 11, 2023",
-        components: "peonies",
+        components: ["peonies"],
         price: 1000,
     },
     {
         imageSrc: "images/gallery/gallery2.jpg",
         name: "Puffy Peonies",
         date: "October 2, 2023",
-        components: "peonies",
+        components: ["peonies"],
         price: 900,
     },
     {
         imageSrc: "images/gallery/gallery3.jpg",
         name: "Fresh heartwarming bouquet",
         date: "August 29, 2023",
-        components: "roses, hydrangeas, carnations, tulips",
+        components: ["roses", "hydrangeas", "carnations", "tulips"],
         price: 1200,
     },
     {
         imageSrc: "images/gallery/gallery4.jpg",
         name: "Warm white tulips",
         date: "August 8, 2023",
-        components: "tulips",
+        components: ["tulips"],
         price: 800,
     },
     {
         imageSrc: "images/gallery/gallery5.jpg",
         name: "Minimalistic white arrangement",
         date: "September 12, 2023",
-        components: "roses, gypsophilas",
+        components: ["roses", "gypsophilas"],
         price: 700,
     },
     {
         imageSrc: "images/gallery/gallery6.jpg",
         name: "Unusual flower combination",
         date: "August 17, 2023",
-        components: "tulips, eucalyptus and smth else",
+        components: ["tulips", "eucalyptus"],
         price: 1300,
     },
     {
         imageSrc: "images/gallery/gallery7.jpg",
         name: "White lilies in paper",
         date: "September 1, 2023",
-        components: "lilies",
+        components: ["lilies"],
         price: 1000,
     },
     {
         imageSrc: "images/gallery/gallery8.jpg",
         name: "Miniature white tulips",
         date: "July 26, 2023",
-        components: "tulips",
+        components: ["tulips"],
         price: 900,
     },
     {
         imageSrc: "images/gallery/gallery9.jpg",
         name: "Warm spring arrangement",
         date: "May 23, 2023",
-        components: "peonies, roses, lilies, orchids",
+        components: ["peonies", "roses", "lilies", "orchids"],
         price: 1500,
     }
 ];
@@ -97,9 +97,8 @@ function LoadReviews() {
         reviewsContainer.append(reviewDiv);
     });
 }
-
 function ShowAnswers() {
-    
+
     const qaData = [
         {
             question: "What are your delivery options?",
@@ -136,8 +135,10 @@ function ShowAnswers() {
     });
 }
 
-function handleSeeMoreClick(imageSrc) {
+const generateComponent = (components) =>
+    components.map(component => `<span class="component">${component}</span>`).join(", ");
 
+function handleSeeMoreClick(imageSrc) {
     let $bigImage = $("#big-image-src");
 
     console.log(imageSrc);
@@ -150,10 +151,31 @@ function handleSeeMoreClick(imageSrc) {
 
         $("#bqt-name").text(details.name);
         $("#posted").text("posted " + details.date);
-        $("#components").html("<b>Components:</b><br />" + details.components);
+
+        // Create a container for components
+        const componentsContainer = document.createElement("div");
+        componentsContainer.innerHTML = generateComponent(details.components);
+
+        // Append the components container to the #components element
+        const componentsElement = $("#components");
+        componentsElement.empty(); // Clear existing components
+        componentsElement.append(componentsContainer);
+
+        // Create a new div element to add after the components
+        const newDiv = document.createElement("div");
+
+        // Add an ID to the newDiv
+        newDiv.id = "overlay"; // Set the desired ID
+
+        // Insert the new div after the components container
+        componentsElement.after(newDiv);
+
+        // Update the price
         $("#price").html("<b>Price:</b> " + details.price + "UAH");
 
+        // Show the page
         togglePage("page2");
+        fetchData();
     }
 }
 
@@ -161,7 +183,7 @@ function CreateFooterColumns() {
 
     const texts = [
         {
-            sousTittle: "About", text1: "Services", text2: "FAQ", text3: "Portfolio" 
+            sousTittle: "About", text1: "Services", text2: "FAQ", text3: "Portfolio"
         },
         {
             sousTittle: "Careers", text1: "Terms", text2: "Contact", text3: "Refund Policy"
@@ -221,9 +243,8 @@ function DisplayGallery() {
     }
 }
 
-function togglePage(page) {
-
-    var currentPage = getCurrentPage();
+const togglePage = (page) => {
+    const currentPage = getCurrentPage();
     if (page !== currentPage) {
         document.getElementById(currentPage).style.display = "none";
         document.getElementById(page).style.display = "block";
@@ -236,7 +257,8 @@ function togglePage(page) {
         console.log(window.history);
 
         if (page === "page2") {
-            let img = $('#big-image-src').attr('src');
+            const img = $('#big-image-src').attr('src');
+            //fetchData();
             populateBouquetExplore(img);
         }
     }
@@ -282,13 +304,81 @@ function loadPage2WithImage(imageSrc) {
     togglePage("page2");
 }
 
-window.addEventListener("popstate", function (event) {
-    if (event.state && event.state.page) {
-        console.log(event.state.page);
-        togglePage(event.state.page);
-    }
-});
+function fetchData() {
+    const apiURL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
+    // Get references to the HTML elements
+    const wordElements = document.querySelectorAll(".component");
+
+    // Create the overlay element
+    const overlay = document.createElement("div");
+    overlay.id = "overlay";
+
+    // Add the overlay to the body, but keep it hidden initially
+    document.body.appendChild(overlay);
+    overlay.style.display = "none";
+
+    console.log(wordElements);
+
+    // Add a mouseover event listener to each word element
+    wordElements.forEach((wordElement) => {
+        console.log(wordElement);
+        wordElement.addEventListener("mouseover", () => {
+            // Get the word from the "data-word" attribute
+            const word = wordElement.innerText;
+            console.log(word);
+
+            // Make the API request
+            fetch(apiURL + word)
+                .then((response) => response.json())
+                .then((data) => {
+                    // Get a random definition
+                    const definition = pickRandomDefinition(data);
+
+                    // Set the overlay content
+                    overlay.innerText = definition;
+
+                    // Display the overlay temporarily to get its width
+                    overlay.style.display = "block";
+
+                    console.log(overlay.offsetWidth);
+                    // Calculate the position for the overlay
+                    const wordRect = wordElement.getBoundingClientRect();
+                    const top = wordRect.bottom + window.scrollY; // Position under the word
+                    const left = wordRect.right + window.scrollX - overlay.offsetWidth; // Position to the right of the word
+
+                    // Position and show the overlay
+                    overlay.style.top = `${top}px`;
+                    overlay.style.left = `${left}px`;
+
+                    // Keep the overlay visible
+                    overlay.style.display = "block";
+                })
+                .catch((error) => {
+                    console.error("An error occurred:", error);
+                });
+        });
+
+        // Remove the overlay on mouseout
+        wordElement.addEventListener("mouseout", () => {
+            overlay.style.display = "none";
+        });
+    });
+}
+
+function pickRandomDefinition(data) {
+    const wordData = data[0];
+    console.log(wordData);
+    if (wordData && wordData.meanings.length > 0) {
+        const meanings = wordData.meanings[0].definitions;
+        if (meanings.length > 0) {
+            const randomIndex = Math.floor(Math.random() * meanings.length);
+            return meanings[randomIndex].definition;
+        }
+    }
+    return "No definition found.";
+}
+ 
 function getRandomGalleryImages(excludeImage, count) {
     const galleryImages = imageDetails
         .filter(image => image.imageSrc !== excludeImage)
@@ -329,37 +419,47 @@ function populateBouquetExplore(currentImageSrc) {
     });
 }
 
-// Get all quantity input elements on the page
-const quantityInputs = document.querySelectorAll('.quantity');
+function setupQuantityInput() {
+    // Get all quantity input elements on the page
+    const quantityInputs = document.querySelectorAll('.quantity');
 
-quantityInputs.forEach(input => {
-    const decrementButton = input.previousElementSibling;
-    const incrementButton = input.nextElementSibling;
+    quantityInputs.forEach(input => {
+        const decrementButton = input.previousElementSibling;
+        const incrementButton = input.nextElementSibling;
 
-    decrementButton.addEventListener('click', () => {
-        // Decrease the quantity when the decrement button is clicked
-        if (input.value > input.min) {
-            input.value = parseInt(input.value) - 1;
-        }
+        decrementButton.addEventListener('click', () => {
+            // Decrease the quantity when the decrement button is clicked
+            if (input.value > input.min) {
+                input.value = parseInt(input.value) - 1;
+            }
+        });
+
+        incrementButton.addEventListener('click', () => {
+            // Increase the quantity when the increment button is clicked
+            if (input.value < input.max || !input.max) {
+                input.value = parseInt(input.value) + 1;
+            }
+        });
+
+        input.addEventListener('input', () => {
+            // Ensure the entered value is within the specified min and max limits
+            if (input.value < input.min) {
+                input.value = input.min;
+            } else if (input.max && input.value > input.max) {
+                input.value = input.max;
+            }
+        });
     });
+}
 
-    incrementButton.addEventListener('click', () => {
-        // Increase the quantity when the increment button is clicked
-        if (input.value < input.max || !input.max) {
-            input.value = parseInt(input.value) + 1;
-        }
-    });
+setupQuantityInput();
 
-    input.addEventListener('input', () => {
-        // Ensure the entered value is within the specified min and max limits
-        if (input.value < input.min) {
-            input.value = input.min;
-        } else if (input.max && input.value > input.max) {
-            input.value = input.max;
-        }
-    });
+window.addEventListener("popstate", function (event) {
+    if (event.state && event.state.page) {
+        console.log(event.state.page);
+        togglePage(event.state.page);
+    }
 });
-
 
 $(document).ready(function () {
 
@@ -370,6 +470,5 @@ $(document).ready(function () {
     });
 
     CreateFooterColumns();
-
     DisplayGallery();
 });
