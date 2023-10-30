@@ -1,14 +1,16 @@
 .order {
     background: #E3E5E4;
-    padding:1.7vw;
-    display:flex;
-    flex-direction:row;
-    align-content:center;
+    padding: 1.5vw;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    margin-bottom:2vw;
 }
 
 .order img{
-    width: 8.7vw;
-    height: 8.7vw;
+    width: 8.5vw;
+    height: 8.5vw;
     margin-right: 4vw;
 }
 
@@ -41,14 +43,48 @@
     width: fit-content;
     height: fit-content;
     cursor: pointer;
-    background:none;
+    background: none;
     border: none;
     outline: none;
-    font-size:1.5em;
+    font-size: 1.5em;
+    font-weight: 400;
+    color: #4A4A4A;
 }
 
 .quantity::-webkit-inner-spin-button,
 .quantity::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+#previous .button-div {
+    padding: 0.1vw 0.6vw;
+    height: fit-content;
+    margin-top: 0;
+    font-size:0.8em;
+    margin-left:auto;
+    margin-right: 2vw;
+}
+
+#current {
+    display: flex;
+    flex-direction: column; /* If you want to stack elements vertically */
+    margin-bottom: 5vw;
+}
+
+
+#current .button-div{
+    padding: 1.1vw 1.7vw;
+    font-size: 1em;
+    margin: auto;
+}
+
+.ord-title{
+    font-weight:500;
+    font-size: 1.2em;
+}
+
+.ord-status, .bqt-price {
+    font-size: 0.9em;
+    color: #4A4A4A;
 }

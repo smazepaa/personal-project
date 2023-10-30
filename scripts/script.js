@@ -63,6 +63,7 @@ const imageDetails = [
         price: 1500,
     }
 ];
+
 function LoadReviews() {
     const reviewsData = [
         {
@@ -97,6 +98,7 @@ function LoadReviews() {
         reviewsContainer.append(reviewDiv);
     });
 }
+
 function ShowAnswers() {
 
     const qaData = [
@@ -471,4 +473,90 @@ $(document).ready(function () {
 
     CreateFooterColumns();
     DisplayGallery();
+    //localStorage.clear();
 });
+
+class Order {
+    constructor(id, title, price, status, image) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.status = status;
+        this.image = image;
+    }
+
+    saveToLocalStorage() {
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push(this);
+        localStorage.setItem('orders', JSON.stringify(orders));
+    }
+
+    static getAllOrdersFromLocalStorage() {
+        const ordersData = JSON.parse(localStorage.getItem('orders')) || [];
+        return ordersData.map(orderData => {
+            return new Order(orderData.id, orderData.title, orderData.price, orderData.status, orderData.image);
+        });
+    }
+}
+
+function createAndDisplayOrders() {
+    // Check if orders already exist in local storage
+    const ordersExist = localStorage.getItem('orders') !== null;
+
+    if (!ordersExist) {
+        // Create three Order objects
+        const order1 = new Order('order-1', 'Closed peonies bouquet', '1000UAH', 'delivered', 'images/gallery/gallery1.jpg');
+        const order2 = new Order('order-2', 'Puffy Peonies', '900UAH', 'delivered', 'images/gallery/gallery2.jpg');
+        const order3 = new Order('order-3', 'Fresh heartwarming bouquet', '1200UAH', 'delivered', 'images/gallery/gallery3.jpg');
+
+        // Save the orders to local storage
+        order1.saveToLocalStorage();
+        order2.saveToLocalStorage();
+        order3.saveToLocalStorage();
+    }
+
+    // Retrieve all orders from local storage
+    const allOrders = Order.getAllOrdersFromLocalStorage();
+
+    // Display the orders with a "Order Again" button
+    const previousOrdersContainer = document.getElementById('previous');
+    allOrders.forEach(order => {
+        const orderDiv = document.createElement('div');
+        orderDiv.className = 'order';
+
+        const image = document.createElement('img');
+        image.src = order.image;
+
+        const ordText = document.createElement('div');
+        ordText.className = 'ord-text';
+        const title = document.createElement('p');
+        title.className = "ord-title"
+        title.textContent = order.title;
+
+        const status = document.createElement('p');
+        status.className = "ord-status";
+        status.textContent = `Status: ${order.status}`;
+
+        ordText.appendChild(title);
+        ordText.appendChild(status);
+
+        // Add "Order Again" button
+        const orderAgainButton = document.createElement('div');
+        orderAgainButton.className = 'button-div';
+        orderAgainButton.innerHTML = '<p>Order Again</p>';
+        orderAgainButton.addEventListener('click', () => {
+            // You can define a function to handle the "Order Again" action here
+            // For example, you can create a new order with the same details.
+            console.log('Order Again clicked for:', order.title);
+        });
+
+        orderDiv.appendChild(image);
+        orderDiv.appendChild(ordText);
+        orderDiv.appendChild(orderAgainButton);
+
+        previousOrdersContainer.appendChild(orderDiv);
+    });
+}
+
+// Call the function to create and display orders
+createAndDisplayOrders();
