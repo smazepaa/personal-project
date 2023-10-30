@@ -1,48 +1,48 @@
 function showPage(page) {
     const allPages = document.querySelectorAll('.page');
+    console.log('allPages', allPages);
     allPages.forEach(pageElement => {
         pageElement.style.display = 'none';
     });
 
     const selectedPage = document.getElementById(`page-${page}`);
+    console.log('selectedPage', selectedPage);
     selectedPage.style.display = 'block';
 
     const allHeaders = document.querySelectorAll('.page-header');
-    console.log(allHeaders);
+    console.log('allHeaders', allHeaders);
     allHeaders.forEach(headerElement => {
         headerElement.style.display = 'none';
     });
 
-    const selectedHeader = document.querySelector(`.page-header.${page}-header`);
-    const otherHeader = document.querySelector(`.page-header.other-header`);
-    
-    console.log(selectedHeader);
-    if (selectedHeader != null) {
-        selectedHeader.style.display = 'block';
-    }
-    else {
-        console.log('header is null');
-        console.log(otherHeader);
-        otherHeader.style.display = 'block';
-    }
+    // Handle link active state
+    const navigationLinks = document.querySelectorAll('a[data-page]');
+    navigationLinks.forEach(link => {
+        link.classList.remove('active'); // Remove active class from all links
+    });
 
-    
-    const homeHeader = document.querySelector(`.page-header.home-header`);
-    const homeFooter = document.getElementById('home-footer');
-    const otherFooter = document.getElementById('other-footer');
-
-    console.log(page);
+    console.log('page', page);
     if (page === 'home') {
-        homeFooter.style.display = 'block';
-        homeHeader.style.display = 'block';
-        otherFooter.style.display = 'none';
-        otherHeader.style.display = 'none';
-        
+        // Display home header and footer
+        document.querySelector('.page-header.home-header').style.display = 'block';
+        document.getElementById('home-footer').style.display = 'block';
+
+        // Hide other header and footer
+        document.querySelector('.page-header.other-header').style.display = 'none';
+        document.getElementById('other-footer').style.display = 'none';
     } else {
-        homeFooter.style.display = 'none';
-        homeHeader.style.display = 'none';
-        otherFooter.style.display = 'block';
-        otherHeader.style.display = 'block';
+        // Display other header and footer
+        document.querySelector('.page-header.other-header').style.display = 'block';
+        document.getElementById('other-footer').style.display = 'block';
+
+        // Set the active class for the corresponding link
+        const activeLink = document.querySelector(`a[data-page="${page}"]`);
+        console.log(activeLink);
+        activeLink.classList.add('active');
+
+        // Hide home header and footer
+        document.querySelector('.page-header.home-header').style.display = 'none';
+        document.getElementById('home-footer').style.display = 'none';
     }
 }
 

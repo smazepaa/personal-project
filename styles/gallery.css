@@ -12,7 +12,7 @@ header {
     font-family: Montserrat;
 }
 
-.content-container {
+.page-header.other-header .content-container {
     top: 0;
     left: 0;
     right: 0;
@@ -220,4 +220,8 @@ html{
 
 span{
     font-size: 1em;
+}
+
+.active{
+    font-weight:bolder;
 }
