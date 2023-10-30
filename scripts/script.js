@@ -200,7 +200,8 @@ function CreateFooterColumns() {
 
     const container = $('.footer');
 
-    texts.forEach(function (textSet) {
+    for (let i = 0; i < texts.length; i++) {
+        const textSet = texts[i];
         const newDiv = $('<div class="column"></div>');
 
         const sousTittle = $(`<p class="sous-tittle">${textSet.sousTittle}</p>`);
@@ -210,7 +211,7 @@ function CreateFooterColumns() {
 
         newDiv.append(sousTittle, text1, text2, text3);
         container.append(newDiv);
-    });
+    }
 }
 
 function DisplayGallery() {
