@@ -566,25 +566,21 @@ navigationLinks.forEach(link => {
     });
 });
 
+// Handle the navigation based on the URL
 function handleNavigation() {
-    const path = window.location.pathname;
-    console.log(path);
+    const path = window.location.origin + window.location.pathname;
+    console.log(path)
 
-    // Now, you can determine the current page based on the URL
-    let currentPage;
-    if (path === '/') {
-        currentPage = 'home';
-    } else if (path === '/gallery') {
-        currentPage = 'gallery';
-    } else if (path === '/orders') {
-        currentPage = 'orders';
+    // Check if the path contains '/gallery'
+    if (path.includes('/gallery')) {
+        // If '/gallery' is in the path, show the gallery page and hide others
+        togglePage('gallery');
+    } else {
+        // Handle other pages or show the home page by default
+        // You can add more cases for other pages as needed
+        togglePage('home');
     }
-    // Add more cases for other pages as needed
-
-    // Show/hide content based on the current page
-    togglePage(currentPage);
 }
-
 // Add a popstate event listener to handle back/forward navigation
 window.addEventListener("popstate", handleNavigation);
 
