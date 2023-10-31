@@ -238,6 +238,7 @@ function DisplayGallery() {
 function togglePage(page) {
     const allPages = $('.page');
     allPages.css('display', 'none');
+    console.log(allPages);
 
     const selectedPage = $(`#page-${page}`);
     selectedPage.css('display', 'block');
@@ -248,6 +249,9 @@ function togglePage(page) {
     const header1NavigationLinks = $('.page-header.home-header a[data-page]');
     const header2NavigationLinks = $('.page-header.other-header a[data-page]');
 
+    console.log('header1NavigationLinks', header1NavigationLinks);
+    console.log('header2NavigationLinks', header2NavigationLinks);
+    console.log(page);
     if (page === 'home') {
         // Display home header and footer
         $('.page-header.home-header').css('display', 'block');
@@ -278,7 +282,6 @@ function togglePage(page) {
         $(`.page-header.other-header a[data-page="${page}"]`).addClass('active');
     }
 }
-
 
 function loadPage2WithImage(imageSrc) {
 
@@ -558,31 +561,43 @@ function showPage(page) {
     togglePage(page);
 }
 
-const navigationLinks = document.querySelectorAll('a[data-page]');
-navigationLinks.forEach(link => {
-    link.addEventListener('click', (event) => {
-        const page = event.currentTarget.getAttribute('data-page');
-        showPage(page);
-    });
-});
-
-// Handle the navigation based on the URL
+// Now, you can determine the current page based on the URL and show/hide content accordingly
 function handleNavigation() {
-    const path = window.location.origin + window.location.pathname;
-    console.log(path)
+    const path = window.location.pathname;
 
     // Check if the path contains '/gallery'
     if (path.includes('/gallery')) {
         // If '/gallery' is in the path, show the gallery page and hide others
         togglePage('gallery');
-    } else {
+    } else if (path.includes('/orders')) {
+        // Handle the orders page
+        togglePage('orders');
+    }
+    else {
         // Handle other pages or show the home page by default
-        // You can add more cases for other pages as needed
         togglePage('home');
     }
 }
+
 // Add a popstate event listener to handle back/forward navigation
 window.addEventListener("popstate", handleNavigation);
 
-// Initial page load or manual URL entry
-handleNavigation();
+// When navigating to a different "page"
+function navigateToPage(page) {
+    // Modify the URL without triggering a full page reload
+    history.pushState({ page }, null, `/${page}`);
+
+    // Now, you can handle the page change using JavaScript
+    handleNavigation();
+}
+
+// Add event listeners to navigation links
+const navigationLinks = document.querySelectorAll('a[data-page]');
+navigationLinks.forEach(link => {
+    link.addEventListener('click', event => {
+        event.preventDefault(); // Prevent the default link behavior
+        const page = event.currentTarget.getAttribute('data-page');
+        console.log(page);
+        navigateToPage(page);
+    });
+});
