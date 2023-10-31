@@ -386,6 +386,10 @@ footer .button-div {
     cursor: pointer;
 }
 
+.round-btn p{
+    margin:0;
+}
+
 .answer {
     display: none;
     width: 80%;

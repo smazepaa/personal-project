@@ -128,7 +128,7 @@ function ShowAnswers() {
 
         const questionDiv = $('<div class="question"></div>');
         const qstnText = $(`<p class="qstn-text">${qa.question}</p>`);
-        const roundBtn = $('<div class="round-btn">+</div');
+        const roundBtn = $('<div class="round-btn"><p>+</p></div');
 
         const answerDiv = $('<div class="answer"></div>');
         const answerText = $(`<p class="answer-text">${qa.answer}</p>`);
