@@ -267,7 +267,6 @@ const togglePage = (page) => {
     }
 }
 
-
 function getCurrentPage() {
     if (document.getElementById("page-gallery").style.display !== "none") {
         return "page-gallery";
