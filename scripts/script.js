@@ -87,18 +87,17 @@ function LoadReviews() {
 
     const reviewsContainer = $('#reviews');
 
-    reviewsData.forEach(function (review) {
+    for (const review of reviewsData) {
         const reviewDiv = $('<div class="rev"></div>');
 
-        const image = $('<img>');
-        image.attr('src', review.imgSrc);
-
+        const image = $('<img>').attr('src', review.imgSrc);
         const commentParagraph = $('<p class="comment"></p>').text(review.reviewText);
         const authorParagraph = $('<p class="author"></p>').text(review.author);
 
         reviewDiv.append(image, commentParagraph, authorParagraph);
         reviewsContainer.append(reviewDiv);
-    });
+    }
+
 }
 
 function ShowAnswers() {
@@ -124,29 +123,30 @@ function ShowAnswers() {
 
     const questionsContainer = $('#questions');
 
-    qaData.forEach(function (qaData) {
+    for (let i = 0; i < qaData.length; i++) {
+        const qa = qaData[i];
+
         const questionDiv = $('<div class="question"></div>');
-        const qstnText = $(`<p class="qstn-text">${qaData.question}</p>`);
-        const roundBtn = $('<div class="round-btn">+</div>');
+        const qstnText = $(`<p class="qstn-text">${qa.question}</p>`);
+        const roundBtn = $('<div class="round-btn">+</div');
 
         const answerDiv = $('<div class="answer"></div>');
-        const answerText = $(`<p class="answer-text">${qaData.answer}</p>`);
+        const answerText = $(`<p class="answer-text">${qa.answer}</p>`);
 
         questionDiv.append(qstnText, roundBtn);
         answerDiv.append(answerText);
 
         questionsContainer.append(questionDiv, answerDiv);
-    });
+    }
 }
 
-const generateComponent = (components) =>
-    components.map(component => `<span class="component">${component}</span>`).join(", ");
+const generateComponent = (components) => _.map(components,
+    component => `<span class="component">${component}</span>`).join(", ");
 
 function handleSeeMoreClick(imageSrc) {
     let $bigImage = $("#big-image-src");
 
-    console.log(imageSrc);
-    const details = imageDetails.find(item => item.imageSrc === imageSrc);
+    const details = _.find(imageDetails, { imageSrc });
 
     if (details) {
         $bigImage.attr("src", imageSrc);
@@ -156,29 +156,24 @@ function handleSeeMoreClick(imageSrc) {
         $("#bqt-name").text(details.name);
         $("#posted").text("posted " + details.date);
 
-        // Create a container for components
-        const componentsContainer = document.createElement("div");
-        componentsContainer.innerHTML = generateComponent(details.components);
+        const componentsContainer = $("<div></div>");
+        componentsContainer.html(generateComponent(details.components));
 
         // Append the components container to the #components element
         const componentsElement = $("#components");
-        componentsElement.empty(); // Clear existing components
+        componentsElement.empty();
         componentsElement.append(componentsContainer);
 
-        // Create a new div element to add after the components
-        const newDiv = document.createElement("div");
-
-        // Add an ID to the newDiv
-        newDiv.id = "overlay"; // Set the desired ID
+        const newDiv = $("<div></div");
+        newDiv.attr("id", "overlay"); // Set the desired ID using attr()
 
         // Insert the new div after the components container
         componentsElement.after(newDiv);
 
-        // Update the price
         $("#price").html("<b>Price:</b> " + details.price + "UAH");
 
-        // Show the page
-        togglePage("page-other");
+        populateBouquetExplore(imageSrc);
+        togglePage("other");
         fetchData();
     }
 }
@@ -186,18 +181,10 @@ function handleSeeMoreClick(imageSrc) {
 function CreateFooterColumns() {
 
     const texts = [
-        {
-            sousTittle: "About", text1: "Services", text2: "FAQ", text3: "Portfolio"
-        },
-        {
-            sousTittle: "Careers", text1: "Terms", text2: "Contact", text3: "Refund Policy"
-        },
-        {
-            sousTittle: "Services", text1: "Weddings", text2: "Blogs", text3: "Special Events"
-        },
-        {
-            sousTittle: "Contact Us", text1: "info@blooms.com", text2: "+1 123-456-789", text3: ""
-        }
+        { sousTittle: "About", text1: "Services", text2: "FAQ", text3: "Portfolio" },
+        { sousTittle: "Careers", text1: "Terms", text2: "Contact", text3: "Refund Policy" },
+        { sousTittle: "Services", text1: "Weddings", text2: "Blogs", text3: "Special Events" },
+        { sousTittle: "Contact Us", text1: "info@blooms.com", text2: "+1 123-456-789", text3: "" }
     ];
 
     const container = $('.footer');
@@ -248,65 +235,64 @@ function DisplayGallery() {
     }
 }
 
-const togglePage = (page) => {
-    const currentPage = getCurrentPage();
-    if (page !== currentPage) {
-        document.getElementById(currentPage).style.display = "none";
-        document.getElementById(page).style.display = "block";
+function togglePage(page) {
+    const allPages = $('.page');
+    allPages.css('display', 'none');
 
-        // Scroll to the top of the page
-        window.scrollTo(0, 0);
+    const selectedPage = $(`#page-${page}`);
+    selectedPage.css('display', 'block');
 
-        // Use the HTML5 History API to push a state when toggling pages
-        window.history.pushState({ page: page }, `#${page}`);
-        console.log(window.history);
+    const allHeaders = $('.page-header');
+    allHeaders.css('display', 'none');
 
-        if (page === "page-other") {
-            const img = $('#big-image-src').attr('src');
-            //fetchData();
-            populateBouquetExplore(img);
-        }
-    }
-}
+    const header1NavigationLinks = $('.page-header.home-header a[data-page]');
+    const header2NavigationLinks = $('.page-header.other-header a[data-page]');
 
-function getCurrentPage() {
-    if (document.getElementById("page-gallery").style.display !== "none") {
-        return "page-gallery";
+    if (page === 'home') {
+        // Display home header and footer
+        $('.page-header.home-header').css('display', 'block');
+        $('#home-footer').css('display', 'block');
+
+        // Hide other header and footer
+        $('.page-header.other-header').css('display', 'none');
+        $('#other-footer').css('display', 'none');
+
+        header1NavigationLinks.removeClass('active');
+        $('.page-header.home-header a[data-page="home"]').addClass('active');
     } else {
-        return "page-other";
+        // Display other header and footer
+        $('.page-header.other-header').css('display', 'block');
+        $('#other-footer').css('display', 'block');
+
+        // Hide home header and footer
+        $('.page-header.home-header').css('display', 'none');
+        $('#home-footer').css('display', 'none');
+
+        header2NavigationLinks.removeClass('active');
+
+        // To remain gallery link active when going to image page
+        if (page === 'other') {
+            page = 'gallery';
+        }
+
+        $(`.page-header.other-header a[data-page="${page}"]`).addClass('active');
     }
 }
+
 
 function loadPage2WithImage(imageSrc) {
 
     handleSeeMoreClick(imageSrc);
 
     // Clear the existing small explore images
-    const exploreContainer = document.getElementById("bqt-explore");
-    exploreContainer.innerHTML = "";
+    const exploreContainer = $("#bqt-explore");
+    exploreContainer.empty();
 
     // Generate new random images for the small explore section
-    const randomImages = getRandomGalleryImages(imageSrc, 6);
-
-    // Add the new random images to the small explore section
-    randomImages.forEach((imageSrc, index) => {
-        const imageDiv = document.createElement("div");
-        const imageElement = document.createElement("img");
-
-        const uniqueId = `explore-image-${index}`;
-        imageElement.id = uniqueId;
-        imageElement.src = imageSrc;
-
-        imageElement.addEventListener("click", function () {
-            loadPage2WithImage(imageSrc);
-        });
-
-        imageDiv.appendChild(imageElement);
-        exploreContainer.appendChild(imageDiv);
-    });
+    populateBouquetExplore(imageSrc);
 
     // Toggle to Page 2
-    togglePage("page-other");
+    togglePage("other");
 }
 
 function fetchData() {
@@ -323,15 +309,11 @@ function fetchData() {
     document.body.appendChild(overlay);
     overlay.style.display = "none";
 
-    console.log(wordElements);
-
     // Add a mouseover event listener to each word element
     wordElements.forEach((wordElement) => {
-        console.log(wordElement);
         wordElement.addEventListener("mouseover", () => {
             // Get the word from the "data-word" attribute
             const word = wordElement.innerText;
-            console.log(word);
 
             // Make the API request
             fetch(apiURL + word)
@@ -346,7 +328,6 @@ function fetchData() {
                     // Display the overlay temporarily to get its width
                     overlay.style.display = "block";
 
-                    console.log(overlay.offsetWidth);
                     // Calculate the position for the overlay
                     const wordRect = wordElement.getBoundingClientRect();
                     const top = wordRect.bottom + window.scrollY; // Position under the word
@@ -372,13 +353,13 @@ function fetchData() {
 }
 
 function pickRandomDefinition(data) {
-    const wordData = data[0];
+    const wordData = _.get(data, '[0]', null);
     console.log(wordData);
-    if (wordData && wordData.meanings.length > 0) {
-        const meanings = wordData.meanings[0].definitions;
+    if (wordData && _.get(wordData, 'meanings[0].definitions.length', 0) > 0) {
+        const meanings = _.get(wordData, 'meanings[0].definitions', []);
         if (meanings.length > 0) {
-            const randomIndex = Math.floor(Math.random() * meanings.length);
-            return meanings[randomIndex].definition;
+            const randomIndex = _.random(0, meanings.length - 1);
+            return _.get(meanings[randomIndex], 'definition', "No definition found.");
         }
     }
     return "No definition found.";
@@ -393,7 +374,7 @@ function getRandomGalleryImages(excludeImage, count) {
 }
 
 function populateBouquetExplore(currentImageSrc) {
-    const exploreContainer = document.getElementById("bqt-explore");
+    const exploreContainer = $("#bqt-explore")[0];
 
     const randomImages = getRandomGalleryImages(currentImageSrc, 6);
 
@@ -410,7 +391,6 @@ function populateBouquetExplore(currentImageSrc) {
         imageElement.src = imageSrc;
 
         imageElement.addEventListener("click", function () {
-            // Handle click event to load Page 2 with the selected image
             loadPage2WithImage(imageSrc);
         });
 
@@ -472,6 +452,7 @@ $(document).ready(function () {
     CreateFooterColumns();
     DisplayGallery();
     //localStorage.clear();
+    showPage('home');
 });
 
 class Order {
@@ -558,3 +539,30 @@ function createAndDisplayOrders() {
 
 // Call the function to create and display orders
 createAndDisplayOrders();
+
+
+function showPage(page) {
+    const allPages = document.querySelectorAll('.page');
+    allPages.forEach(pageElement => {
+        pageElement.style.display = 'none';
+    });
+
+    const selectedPage = document.getElementById(`page-${page}`);
+    selectedPage.style.display = 'block';
+
+    const allHeaders = document.querySelectorAll('.page-header');
+    allHeaders.forEach(headerElement => {
+        headerElement.style.display = 'none';
+    });
+    // Toggle the page based on the provided page
+    togglePage(page);
+}
+
+const navigationLinks = document.querySelectorAll('a[data-page]');
+navigationLinks.forEach(link => {
+    link.addEventListener('click', (event) => {
+        const page = event.currentTarget.getAttribute('data-page');
+        showPage(page);
+    });
+});
+
