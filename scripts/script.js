@@ -562,6 +562,7 @@ function showPage(page) {
 }
 
 // Now, you can determine the current page based on the URL and show/hide content accordingly
+// Function to handle page navigation based on URL
 function handleNavigation() {
     const path = window.location.pathname;
 
@@ -572,8 +573,7 @@ function handleNavigation() {
     } else if (path.includes('/orders')) {
         // Handle the orders page
         togglePage('orders');
-    }
-    else {
+    } else {
         // Handle other pages or show the home page by default
         togglePage('home');
     }
@@ -597,7 +597,9 @@ navigationLinks.forEach(link => {
     link.addEventListener('click', event => {
         event.preventDefault(); // Prevent the default link behavior
         const page = event.currentTarget.getAttribute('data-page');
-        console.log(page);
         navigateToPage(page);
     });
 });
+
+// Initial page load or manual URL entry
+handleNavigation();
