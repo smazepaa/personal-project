@@ -565,4 +565,3 @@ navigationLinks.forEach(link => {
         showPage(page);
     });
 });
-
