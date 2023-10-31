@@ -565,3 +565,28 @@ navigationLinks.forEach(link => {
         showPage(page);
     });
 });
+
+function handleNavigation() {
+    const path = window.location.pathname;
+    console.log(path);
+
+    // Now, you can determine the current page based on the URL
+    let currentPage;
+    if (path === '/') {
+        currentPage = 'home';
+    } else if (path === '/gallery') {
+        currentPage = 'gallery';
+    } else if (path === '/orders') {
+        currentPage = 'orders';
+    }
+    // Add more cases for other pages as needed
+
+    // Show/hide content based on the current page
+    togglePage(currentPage);
+}
+
+// Add a popstate event listener to handle back/forward navigation
+window.addEventListener("popstate", handleNavigation);
+
+// Initial page load or manual URL entry
+handleNavigation();
