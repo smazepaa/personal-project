@@ -1,3 +1,5 @@
+"use strict";
+
 const imageDetails = [
     {
         imageSrc: "images/gallery/gallery1.jpg",
@@ -276,7 +278,6 @@ function getCurrentPage() {
 }
 
 function loadPage2WithImage(imageSrc) {
-    console.log("loadPage2WithImage called with imageSrc: " + imageSrc);
 
     handleSeeMoreClick(imageSrc);
 
@@ -286,7 +287,6 @@ function loadPage2WithImage(imageSrc) {
 
     // Generate new random images for the small explore section
     const randomImages = getRandomGalleryImages(imageSrc, 6);
-    console.log("Random explore images: " + randomImages);
 
     // Add the new random images to the small explore section
     randomImages.forEach((imageSrc, index) => {
@@ -385,21 +385,14 @@ function pickRandomDefinition(data) {
 }
  
 function getRandomGalleryImages(excludeImage, count) {
-    const galleryImages = imageDetails
-        .filter(image => image.imageSrc !== excludeImage)
-        .map(image => image.imageSrc);
+    const galleryImages = _.shuffle(
+        _.filter(imageDetails, (image) => image.imageSrc !== excludeImage)
+    );
 
-    for (let i = galleryImages.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [galleryImages[i], galleryImages[j]] = [galleryImages[j], galleryImages[i]];
-    }
-
-    return galleryImages.slice(0, count);
+    return _.take(galleryImages, count).map((image) => image.imageSrc);
 }
 
-//doesn't enter this function ????
 function populateBouquetExplore(currentImageSrc) {
-    console.log("populateBouquetExplore", currentImageSrc);
     const exploreContainer = document.getElementById("bqt-explore");
 
     const randomImages = getRandomGalleryImages(currentImageSrc, 6);

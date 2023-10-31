@@ -44,7 +44,7 @@ function showPage(page) {
 
         // Set the active class for the corresponding link in header 2
         header2NavigationLinks.forEach(link => {
-            link.classList.remove('active'); // Remove active class from all header 2 links
+            link.classList.remove('active');
         });
 
         const activeLink = document.querySelector(`.page-header.other-header a[data-page="${page}"]`);
