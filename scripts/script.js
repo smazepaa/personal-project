@@ -249,7 +249,6 @@ function togglePage(page) {
     const header1NavigationLinks = $('.page-header.home-header a[data-page]');
     const header2NavigationLinks = $('.page-header.other-header a[data-page]');
 
-    console.log('header1NavigationLinks', header1NavigationLinks);
     console.log('header2NavigationLinks', header2NavigationLinks);
     console.log(page);
     if (page === 'home') {
@@ -543,7 +542,6 @@ function createAndDisplayOrders() {
 // Call the function to create and display orders
 createAndDisplayOrders();
 
-
 function showPage(page) {
     const allPages = document.querySelectorAll('.page');
     allPages.forEach(pageElement => {
@@ -561,14 +559,15 @@ function showPage(page) {
     togglePage(page);
 }
 
-// Now, you can determine the current page based on the URL and show/hide content accordingly
-// Function to handle page navigation based on URL
 function handleNavigation() {
     const path = window.location.pathname;
 
-    // Check if the path contains '/gallery'
-    if (path.includes('/gallery')) {
-        // If '/gallery' is in the path, show the gallery page and hide others
+    // Check if the path exactly matches '/contacts'
+    if (path.includes('/contacts')) {
+        // If it's an exact match, toggle the "contacts" page
+        togglePage('contacts');
+    } else if (path.includes('/gallery')) {
+        // Handle the gallery page
         togglePage('gallery');
     } else if (path.includes('/orders')) {
         // Handle the orders page
@@ -578,6 +577,7 @@ function handleNavigation() {
         togglePage('home');
     }
 }
+
 
 // Add a popstate event listener to handle back/forward navigation
 window.addEventListener("popstate", handleNavigation);
