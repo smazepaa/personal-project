@@ -251,6 +251,7 @@ function togglePage(page) {
 
     console.log('header2NavigationLinks', header2NavigationLinks);
     console.log(page);
+
     if (page === 'home') {
         // Display home header and footer
         $('.page-header.home-header').css('display', 'block');
@@ -672,4 +673,5 @@ orderButton.addEventListener('click', function () {
     // Clear the button's content and add the <span> with the new text and icon
     orderButton.innerHTML = '';
     orderButton.appendChild(buttonText);
+    createAndAddOrder();
 });
