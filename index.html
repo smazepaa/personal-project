@@ -1,312 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloom</title>
-    <link rel="stylesheet" type="text/css" href="styles\style.css">
-    <!-- <link rel="stylesheet" type="text/css" href="styles\media_styling.css"> -->
-    <link rel="stylesheet" type="text/css" href="styles\style-animation.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-    <script src="https://kit.fontawesome.com/77ecbc8fc5.js" crossorigin="anonymous"></script>
-    <!--<script src="scripts\bundle.js"></script> -->
-    <link rel="icon" href="https://smazepaa.github.io/personal-project/images/icon.png">
-</head>
-<body id="root">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bloom</title>
+        <link rel="stylesheet" type="text/css" href="styles\style.css">
+        <!-- <link rel="stylesheet" type="text/css" href="styles\media_styling.css"> -->
+        <link rel="stylesheet" type="text/css" href="styles\style-animation.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+        <script src="https://kit.fontawesome.com/77ecbc8fc5.js" crossorigin="anonymous"></script>
+        <link rel="icon" href="https://smazepaa.github.io/personal-project/images/icon.png">
+    </head>
+    <body>
 
-    <!-- Home Page Header -->
-    <header class="page-header home-header">
-        <div class="background-image">
-            <img src="images\index\bg_image_header.jpg" />
-        </div>
-        <div class="content-container">
-            <div id="head">
-                <div class="brand-name">
-                    <p>Bloom</p>
-                </div>
-                <div class="small">
-                    <a href="/personal-project/" data-page="home" class="active"><p>Home</p></a>
-                </div>
-                <div class="small">
-                    <a href="/personal-project/gallery" data-page="gallery"><p>Gallery</p></a>
-                </div>
-                <div class="small">
-                    <a href="/personal-project/orders" data-page="orders"><p>Orders</p></a>
-                </div>
-                <div class="small">
-                    <a href="/personal-project/contacts" data-page="contacts"><p>Contacts</p></a>
-                </div>
+        <!-- Home Page Header -->
+        <header class="page-header home-header">
+            <div class="background-image">
+                <img src="images\index\bg_image_header.jpg" />
             </div>
-            <div class="big-text">
-                <p>
-                    Beautiful Blooms Delivered to Your Doorstep
-                </p>
-            </div>
-
-            <div class="smaller-text">
-                <p>Discover a wide selection of stunning flowers, bouquets, and floral arrangements</p>
-            </div>
-
-            <div class="button-div">
-                <a href="/personal-project/gallery" data-page="gallery"><p>Shop Now</p></a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Content for the Home page -->
-    <main>
-        <div id="page-home" class="page">
-            <div class="text-div">
-                <p class="big-center-text">Why Choose Us</p>
-                <p class="description">
-                    We pride ourselves on delivering the highest quality flowers
-                    and providing exceptional customer service
-                </p>
-            </div>
-
-            <div class="why-divs">
-                <div id="fresh-image">
-                    <img src="images\index\fresh_flowers.jpg" />
-                </div>
-                <div id="fresh-text">
-                    <p class="small-title">Fresh flowers</p>
-                    <p class="small-description">
-                        Our fresh flowers are sourced from local growers and arranged by
-                        our talented florists
-                    </p>
-
-                    <div class="button-div">
-                        <a href="/personal-project/gallery" data-page="gallery"><p>Learn More</p></a>
+            <div class="content-container">
+                <div id="head">
+                    <div class="brand-name">
+                        <p>Bloom</p>
                     </div>
-                    <div class="transp-btn">
-                        <a href="/personal-project/orders" data-page="orders"><p>Order Now</p></a>
+                    <div class="small">
+                        <a href="/personal-project/" data-page="home" class="active"><p>Home</p></a>
+                    </div>
+                    <div class="small">
+                        <a href="/personal-project/gallery" data-page="gallery"><p>Gallery</p></a>
+                    </div>
+                    <div class="small">
+                        <a href="/personal-project/orders" data-page="orders"><p>Orders</p></a>
+                    </div>
+                    <div class="small">
+                        <a href="/personal-project/contacts" data-page="contacts"><p>Contacts</p></a>
                     </div>
                 </div>
-            </div>
-
-            <div class="why-divs">
-                <div id="cust-text">
-                    <p class="small-title">Customized Flower Arrangements</p>
-                    <p class="small-description">
-                        Our fresh flowers are sourced from local growers and arranged by
-                        our talented florists
-                    </p>
-
-                    <div class="button-div">
-                        <a href="/personal-project/gallery" data-page="gallery"><p>Browse Collection</p></a>
-                    </div>
-                    <div class="transp-btn">
-                        <a href="/personal-project/orders" data-page="orders"><p>Order Now</p></a>
-                    </div>
-                </div>
-                <div id="cust-image">
-                    <img src="images\index\cust_flowers.jpg" />
-                </div>
-            </div>
-
-            <div class="green-full">
-                <div class="center-big">
-                    <p class="exp-big">
-                        Make your wedding day unforgettable
-                        with our exquisite floral designs and
-                        create the perfect ambiance for your special day
-                    </p>
-                    <p class="small-description">
-                        Explore Our Collection
-                    </p>
-                    <div class="button-div">
-                        <a href="/personal-project/gallery" data-page="gallery"><p>See the Gallery</p></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-div">
-                <p class="big-center-text">What Our Customers Say</p>
-                <p class="description">
-                    We pride ourselves on delivering the highest quality
-                    flowers and providing exceptional customer service
-                </p>
-            </div>
-
-            <div id="reviews"></div>
-
-            <div class="text-div">
-                <p id="faq">Frequently Asked Questions</p>
-                <p class="description" id="d-smaller">
-                    Contact us for any questions or inquiries
-                </p>
-            </div>
-
-            <div id="questions"></div>
-
-            <div class="green-full" id="sign-up">
-                <div class="center-big">
-                    <p class="exp-big">
-                        Sign up for our newsletter
-                    </p>
-                    <p class="small-description">
-                        Subscribe to our newsletter to receive
-                        updates on our latest flower collections, special offers, and more
-                    </p>
-
-                    <form id="newsletter-form">
-                        <div class="input-container">
-                            <input type="email" id="email"
-                                   name="email" placeholder="Enter your email..." required>
-                            <input type="submit" value="Sign Up">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Other Pages Header -->
-    <header class="page-header other-header" style="display: none;">
-        <div class="content-container">
-            <div id="head">
-                <div class="brand-name">
-                    <p>Bloom</p>
-                </div>
-                <div class="small">
-                    <a href="/personal-project/" data-page="home"><p>Home</p></a>
-                </div>
-                <div class="small">
-                    <a href="/personal-project/gallery" data-page="gallery" class="active"><p>Gallery</p></a>
-                </div>
-                <div class="small">
-                    <a href="/personal-project/orders" data-page="orders"><p>Orders</p></a>
-                </div>
-                <div class="small">
-                    <a href="/personal-project/contacts" data-page="contacts"><p>Contacts</p></a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Other Pages Content -->
-    <main>
-        <!-- Content for the Gallery page -->
-        <div id="page-gallery" class="page">
-            <div id="page1">
                 <div class="big-text">
                     <p>
-                        Discover our latest and most popular flower arrangements
+                        Beautiful Blooms Delivered to Your Doorstep
                     </p>
                 </div>
 
-                <div id="images"></div>
-            </div>
-        </div>
-
-        <div id="page-other" class="page" style="display: none;">
-            <a id="back-to-gallery" href="#" onclick="togglePage('gallery')">
-                <p>Back to gallery</p>
-            </a>
-            <div id="big-image">
-                <img id="big-image-src" src="" />
-
-                <div id="text">
-                    <h3 id="bqt-name"></h3>
-                    <p id="posted"></p>
-                    <div id="components"></div>
-                    <p id="price"></p>
-                    <div class="button-div" id="order-button">
-                        <p>Order Now</p>
-                    </div>
+                <div class="smaller-text">
+                    <p>Discover a wide selection of stunning flowers, bouquets, and floral arrangements</p>
                 </div>
-            </div>
-
-            <div id="expl-others">
-                <div class="center-text">
-                    <p>Explore other bouquets</p>
-                </div>
-                <div id="bqt-explore">
-
-                </div>
-            </div>
-        </div>
-
-        <!-- Content for the Orders page -->
-        <div id="page-orders" class="page" style="display: none;">
-            <h2>Your orders</h2>
-
-            <div id="current"></div>
-            <div class="button-div" id="checkout-button" style="display: none">Checkout</div>
-
-        </div>
-
-        <div id="page-contacts" class="page">
-            <div id="icons-map">
-                <div class="contact-info">
-                    <h2>Contact Information</h2>
-                    <p><b>Email:</b> info@blooms.com</p>
-                    <p><b>Phone:</b> +1 123-456-789</p>
-                    <p><b>Address:</b> 993 1st Ave., New York, NY 10022, United States</p>
-
-
-                    <div id="icons">
-                        <ul class="wrapper">
-                            <li class="icon facebook">
-                                <span class="tooltip">Facebook</span>
-                                <i class="fab fa-facebook-f"></i>
-                            </li>
-                            <li class="icon twitter">
-                                <span class="tooltip">Twitter</span>
-                                <i class="fab fa-twitter"></i>
-                            </li>
-                            <li class="icon instagram">
-                                <span class="tooltip">Instagram</span>
-                                <a href="https://www.instagram.com/sof.mazepaa/?hl=en"><i class="fab fa-instagram"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div id="google-map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2376198290754!2d-73.9669196252639!3d40.75679817138686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2f7f950fc674d%3A0x8c5fd03362f9a14!2sGarage%20Flowers%20NYC!5e0!3m2!1sen!2sua!4v1698823632304!5m2!1sen!2sua"
-                            allowfullscreen="" loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Home Page Footer -->
-    <footer id="home-footer">
-        <div class="footer">
-            <div id="brand-btn">
-                <p id="brand">Bloom</p>
 
                 <div class="button-div">
                     <a href="/personal-project/gallery" data-page="gallery"><p>Shop Now</p></a>
                 </div>
             </div>
-        </div>
-        <div id="under-footer">
-            <p>© 2023 Bloom Flower Shop, we love our customers!</p>
-        </div>
-    </footer>
+        </header>
 
-    <!-- Other Pages Footer -->
-    <footer class="greenf" id="other-footer" style="display: none;">
-        <div class="footer">
-            <div id="brand-btn">
-                <p id="brand">Bloom</p>
+        <!-- Content for the Home page -->
+        <main>
+            <div id="page-home" class="page">
+                <div class="text-div">
+                    <p class="big-center-text">Why Choose Us</p>
+                    <p class="description">
+                        We pride ourselves on delivering the highest quality flowers
+                        and providing exceptional customer service
+                    </p>
+                </div>
 
-                <div class="button-div">
-                    <a href="/personal-project/gallery" data-page="gallery"><p>Shop Now</p></a>
+                <div class="why-divs">
+                    <div id="fresh-image">
+                        <img src="images\index\fresh_flowers.jpg" />
+                    </div>
+                    <div id="fresh-text">
+                        <p class="small-title">Fresh flowers</p>
+                        <p class="small-description">
+                            Our fresh flowers are sourced from local growers and arranged by
+                            our talented florists
+                        </p>
+
+                        <div class="button-div">
+                            <a href="/personal-project/gallery" data-page="gallery"><p>Learn More</p></a>
+                        </div>
+                        <div class="transp-btn">
+                            <a href="/personal-project/orders" data-page="orders"><p>Order Now</p></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="why-divs">
+                    <div id="cust-text">
+                        <p class="small-title">Customized Flower Arrangements</p>
+                        <p class="small-description">
+                            Our fresh flowers are sourced from local growers and arranged by
+                            our talented florists
+                        </p>
+
+                        <div class="button-div">
+                            <a href="/personal-project/gallery" data-page="gallery"><p>Browse Collection</p></a>
+                        </div>
+                        <div class="transp-btn">
+                            <a href="/personal-project/orders" data-page="orders"><p>Order Now</p></a>
+                        </div>
+                    </div>
+                    <div id="cust-image">
+                        <img src="images\index\cust_flowers.jpg" />
+                    </div>
+                </div>
+
+                <div class="green-full">
+                    <div class="center-big">
+                        <p class="exp-big">
+                            Make your wedding day unforgettable
+                            with our exquisite floral designs and
+                            create the perfect ambiance for your special day
+                        </p>
+                        <p class="small-description">
+                            Explore Our Collection
+                        </p>
+                        <div class="button-div">
+                            <a href="/personal-project/gallery" data-page="gallery"><p>See the Gallery</p></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-div">
+                    <p class="big-center-text">What Our Customers Say</p>
+                    <p class="description">
+                        We pride ourselves on delivering the highest quality
+                        flowers and providing exceptional customer service
+                    </p>
+                </div>
+
+                <div id="reviews"></div>
+
+                <div class="text-div">
+                    <p id="faq">Frequently Asked Questions</p>
+                    <p class="description" id="d-smaller">
+                        Contact us for any questions or inquiries
+                    </p>
+                </div>
+
+                <div id="questions"></div>
+
+                <div class="green-full" id="sign-up">
+                    <div class="center-big">
+                        <p class="exp-big">
+                            Sign up for our newsletter
+                        </p>
+                        <p class="small-description">
+                            Subscribe to our newsletter to receive
+                            updates on our latest flower collections, special offers, and more
+                        </p>
+
+                        <form id="newsletter-form">
+                            <div class="input-container">
+                                <input type="email" id="email"
+                                       name="email" placeholder="Enter your email..." required>
+                                <input type="submit" value="Sign Up">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="under-footer">
-            <p>© 2023 Bloom Flower Shop, we love our customers!</p>
-        </div>
-    </footer>
+        </main>
 
-    <script src="scripts/script.js"></script>
-    <script src="scripts/animation.js"></script>
-</body>
-    </html>
+        <!-- Other Pages Header -->
+        <header class="page-header other-header" style="display: none;">
+            <div class="content-container">
+                <div id="head">
+                    <div class="brand-name">
+                        <p>Bloom</p>
+                    </div>
+                    <div class="small">
+                        <a href="/personal-project/" data-page="home"><p>Home</p></a>
+                    </div>
+                    <div class="small">
+                        <a href="/personal-project/gallery" data-page="gallery" class="active"><p>Gallery</p></a>
+                    </div>
+                    <div class="small">
+                        <a href="/personal-project/orders" data-page="orders"><p>Orders</p></a>
+                    </div>
+                    <div class="small">
+                        <a href="/personal-project/contacts" data-page="contacts"><p>Contacts</p></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Other Pages Content -->
+        <main>
+            <!-- Content for the Gallery page -->
+            <div id="page-gallery" class="page">
+                <div id="page1">
+                    <div class="big-text">
+                        <p>
+                            Discover our latest and most popular flower arrangements
+                        </p>
+                    </div>
+
+                    <div id="images"></div>
+                </div>
+            </div>
+
+            <div id="page-other" class="page" style="display: none;">
+                <a id="back-to-gallery" href="#" onclick="togglePage('gallery')">
+                    <p>Back to gallery</p>
+                </a>
+                <div id="big-image">
+                    <img id="big-image-src" src="" />
+
+                    <div id="text">
+                        <h3 id="bqt-name"></h3>
+                        <p id="posted"></p>
+                        <div id="components"></div>
+                        <p id="price"></p>
+                        <div class="button-div" id="order-button">
+                            <p>Order Now</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="expl-others">
+                    <div class="center-text">
+                        <p>Explore other bouquets</p>
+                    </div>
+                    <div id="bqt-explore">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content for the Orders page -->
+            <div id="page-orders" class="page" style="display: none;">
+                <h2>Your orders</h2>
+
+                <div id="current"></div>
+                <div class="button-div" id="checkout-button" style="display: none">Checkout</div>
+
+            </div>
+
+            <div id="page-contacts" class="page">
+                <div id="icons-map">
+                    <div class="contact-info">
+                        <h2>Contact Information</h2>
+                        <p><b>Email:</b> info@blooms.com</p>
+                        <p><b>Phone:</b> +1 123-456-789</p>
+                        <p><b>Address:</b> 993 1st Ave., New York, NY 10022, United States</p>
+
+
+                        <div id="icons">
+                            <ul class="wrapper">
+                                <li class="icon facebook">
+                                    <span class="tooltip">Facebook</span>
+                                    <i class="fab fa-facebook-f"></i>
+                                </li>
+                                <li class="icon twitter">
+                                    <span class="tooltip">Twitter</span>
+                                    <i class="fab fa-twitter"></i>
+                                </li>
+                                <li class="icon instagram">
+                                    <span class="tooltip">Instagram</span>
+                                    <a href="https://www.instagram.com/sof.mazepaa/?hl=en"><i class="fab fa-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="google-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2376198290754!2d-73.9669196252639!3d40.75679817138686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2f7f950fc674d%3A0x8c5fd03362f9a14!2sGarage%20Flowers%20NYC!5e0!3m2!1sen!2sua!4v1698823632304!5m2!1sen!2sua"
+                                allowfullscreen="" loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Home Page Footer -->
+        <footer id="home-footer">
+            <div class="footer">
+                <div id="brand-btn">
+                    <p id="brand">Bloom</p>
+
+                    <div class="button-div">
+                        <a href="/personal-project/gallery" data-page="gallery"><p>Shop Now</p></a>
+                    </div>
+                </div>
+            </div>
+            <div id="under-footer">
+                <p>© 2023 Bloom Flower Shop, we love our customers!</p>
+            </div>
+        </footer>
+
+        <!-- Other Pages Footer -->
+        <footer class="greenf" id="other-footer" style="display: none;">
+            <div class="footer">
+                <div id="brand-btn">
+                    <p id="brand">Bloom</p>
+
+                    <div class="button-div">
+                        <a href="/personal-project/gallery" data-page="gallery"><p>Shop Now</p></a>
+                    </div>
+                </div>
+            </div>
+            <div id="under-footer">
+                <p>© 2023 Bloom Flower Shop, we love our customers!</p>
+            </div>
+        </footer>
+
+        <script src="scripts/script.js"></script>
+        <script src="scripts/animation.js"></script>
+        <script src="scripts/url-fetching.js"></script>
+    </body>
+    
+</html>
