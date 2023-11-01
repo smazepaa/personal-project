@@ -1,4 +1,5 @@
 "use strict";
+const $ = require('jquery');
 
 class Order {
     constructor(id, title, price, status, image) {
