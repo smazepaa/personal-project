@@ -211,7 +211,7 @@
                     <p id="posted"></p>
                     <div id="components"></div>
                     <p id="price"></p>
-                    <div class="button-div">
+                    <div class="button-div" id="order-button">
                         <p>Order Now</p>
                     </div>
                 </div>
@@ -232,30 +232,10 @@
             <h2>Your orders</h2>
 
             <div id="current">
-                <h3>Current orders</h3>
 
-                <div class="order">
-                    <img src="images/gallery/gallery9.jpg" />
-                    <div class="ord-text">
-                        <p class="ord-title">
-                            Warm spring arrangement
-                        </p>
-                        <p class="bqt-price">price: 1500UAH</p>
-                    </div>
-
-                    <div class="quantity-input">
-                        <button class="decrement-button">-</button>
-                        <input type="number" class="quantity" value="1" min="1">
-                        <button class="increment-button">+</button>
-                    </div>
-                </div>
-
-                <div class="button-div">Checkout</div>
+                <div class="button-div" id="checkout-button" style="display: none">Checkout</div>
             </div>
-
-            <div id="previous">
-                <h3>Previous orders</h3>
-            </div>
+    
         </div>
 
         <div id="page-contacts" class="page">

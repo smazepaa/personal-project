@@ -453,8 +453,9 @@ $(document).ready(function () {
 
     CreateFooterColumns();
     DisplayGallery();
-    //localStorage.clear();
+    // localStorage.clear();
     showPage('home');
+
 });
 
 class Order {
@@ -480,67 +481,6 @@ class Order {
     }
 }
 
-function createAndDisplayOrders() {
-    // Check if orders already exist in local storage
-    const ordersExist = localStorage.getItem('orders') !== null;
-
-    if (!ordersExist) {
-        // Create three Order objects
-        const order1 = new Order('order-1', 'Closed peonies bouquet', '1000UAH', 'delivered', 'images/gallery/gallery1.jpg');
-        const order2 = new Order('order-2', 'Puffy Peonies', '900UAH', 'delivered', 'images/gallery/gallery2.jpg');
-        const order3 = new Order('order-3', 'Fresh heartwarming bouquet', '1200UAH', 'delivered', 'images/gallery/gallery3.jpg');
-
-        // Save the orders to local storage
-        order1.saveToLocalStorage();
-        order2.saveToLocalStorage();
-        order3.saveToLocalStorage();
-    }
-
-    // Retrieve all orders from local storage
-    const allOrders = Order.getAllOrdersFromLocalStorage();
-
-    // Display the orders with a "Order Again" button
-    const previousOrdersContainer = document.getElementById('previous');
-    allOrders.forEach(order => {
-        const orderDiv = document.createElement('div');
-        orderDiv.className = 'order';
-
-        const image = document.createElement('img');
-        image.src = order.image;
-
-        const ordText = document.createElement('div');
-        ordText.className = 'ord-text';
-        const title = document.createElement('p');
-        title.className = "ord-title"
-        title.textContent = order.title;
-
-        const status = document.createElement('p');
-        status.className = "ord-status";
-        status.textContent = `Status: ${order.status}`;
-
-        ordText.appendChild(title);
-        ordText.appendChild(status);
-
-        // Add "Order Again" button
-        const orderAgainButton = document.createElement('div');
-        orderAgainButton.className = 'button-div';
-        orderAgainButton.innerHTML = '<p>Order Again</p>';
-        orderAgainButton.addEventListener('click', () => {
-            // You can define a function to handle the "Order Again" action here
-            // For example, you can create a new order with the same details.
-            console.log('Order Again clicked for:', order.title);
-        });
-
-        orderDiv.appendChild(image);
-        orderDiv.appendChild(ordText);
-        orderDiv.appendChild(orderAgainButton);
-
-        previousOrdersContainer.appendChild(orderDiv);
-    });
-}
-
-// Call the function to create and display orders
-createAndDisplayOrders();
 
 function showPage(page) {
     const allPages = document.querySelectorAll('.page');
@@ -604,3 +544,132 @@ navigationLinks.forEach(link => {
 
 // Initial page load or manual URL entry
 handleNavigation();
+
+function createAndAddOrder() {
+    // Get the details of the product from the current page
+    const $bigImageSrc = $('#big-image-src');
+    const $bqtName = $('#bqt-name');
+    const $price = $('#price');
+
+    const message = $('#message');
+
+    // Create a new order using the details
+    const order = new Order(
+        'order-' + Date.now(), // Unique ID for the order (you can use your own logic)
+        $bqtName.text(),
+        $price.text(),
+        'new', // Set the initial status to 'new'
+        $bigImageSrc.attr('src')
+    );
+
+    // Save the new order to local storage
+    order.saveToLocalStorage();
+
+    // Add the new order to the array of current orders
+    currentOrders.push(order);
+
+    // Display the new order in the "Current Orders" section
+    const currentOrdersContainer = document.getElementById('current');
+    const orderDiv = document.createElement('div');
+    orderDiv.className = 'order';
+
+    const image = document.createElement('img');
+    image.src = order.image;
+
+    const ordText = document.createElement('div');
+    ordText.className = 'ord-text';
+    const title = document.createElement('p');
+    title.className = 'ord-title';
+    title.textContent = order.title;
+
+    const price = document.createElement('p');
+    price.className = 'bqt-price';
+    price.textContent = order.price;
+
+    ordText.appendChild(title);
+    ordText.appendChild(price);
+
+    // Create the quantity input section
+    const quantityInput = document.createElement('div');
+    quantityInput.className = 'quantity-input';
+
+    const decrementButton = document.createElement('button');
+    decrementButton.className = 'decrement-button';
+    decrementButton.textContent = '-';
+
+    const quantityInputField = document.createElement('input');
+    quantityInputField.type = 'number';
+    quantityInputField.className = 'quantity';
+    quantityInputField.value = '1';
+    quantityInputField.min = '1';
+
+    const incrementButton = document.createElement('button');
+    incrementButton.className = 'increment-button';
+    incrementButton.textContent = '+';
+
+    // Add a "Remove" button (x)
+    const removeButton = document.createElement('button');
+    removeButton.className = 'remove-button';
+    removeButton.textContent = 'x';
+
+    // Add a click event listener to the "Remove" button
+    removeButton.addEventListener('click', () => {
+        // Remove the order from the array and the display
+        const orderIndex = currentOrders.indexOf(order);
+        if (orderIndex > -1) {
+            currentOrders.splice(orderIndex, 1);
+        }
+        orderDiv.remove();
+
+        // Remove the order from local storage
+        const ordersData = JSON.parse(localStorage.getItem('orders')) || [];
+        const updatedOrders = ordersData.filter(orderData => orderData.id !== order.id);
+        localStorage.setItem('orders', JSON.stringify(updatedOrders));
+
+        // Check if there are no current orders
+        if (currentOrders.length === 0) {
+            // Hide the "Checkout" button
+            const checkoutButton = document.getElementById('checkout-button');
+            checkoutButton.style.display = 'none';
+        }
+    });
+
+    // Append the quantity input elements to the quantity input section
+    quantityInput.appendChild(decrementButton);
+    quantityInput.appendChild(quantityInputField);
+    quantityInput.appendChild(incrementButton);
+
+    // Add the quantity input section to the order div
+    orderDiv.appendChild(image);
+    orderDiv.appendChild(ordText);
+    orderDiv.appendChild(quantityInput);
+
+    // Add the "Remove" button to the order div
+    orderDiv.appendChild(removeButton);
+
+    // Append the order div to the "Current Orders" section
+    currentOrdersContainer.insertBefore(orderDiv, currentOrdersContainer.firstChild);
+
+    // Show the "Checkout" button (in case it was hidden)
+    const checkoutButton = document.getElementById('checkout-button');
+    checkoutButton.style.display = 'block';
+}
+
+
+// Initialize the array to store current orders
+const currentOrders = [];
+
+// Add a click event listener to the "Order Now" button
+// Get a reference to your order button
+const orderButton = document.getElementById('order-button'); // Use your actual element ID or class
+
+// Add a click event listener to the order button
+orderButton.addEventListener('click', function () {
+    // Create a <span> element to wrap the text and icon
+    const buttonText = document.createElement('span');
+    buttonText.innerHTML = '<i class="fa-solid fa-check" style="color: #ffffff;"></i>';
+
+    // Clear the button's content and add the <span> with the new text and icon
+    orderButton.innerHTML = '';
+    orderButton.appendChild(buttonText);
+});

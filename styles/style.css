@@ -737,3 +737,7 @@ iframe{
     height: 30vw;
     border: 0;
 }
+
+#order-button span{
+    font-size: 2.1em;
+}
