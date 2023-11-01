@@ -134,6 +134,7 @@ class Order {
 const imageDetails = [
     {
         imageSrc: "images/gallery/gallery1.jpg",
+        imageSrc: "https://smazepaa.github.io/personal-project/images/gallery/gallery1.jpg",
         name: "Closed peonies bouquet",
         date: "October 11, 2023",
         components: ["peonies"],
@@ -141,6 +142,7 @@ const imageDetails = [
     },
     {
         imageSrc: "images/gallery/gallery2.jpg",
+        imageSrc: "https://smazepaa.github.io/personal-project/images/gallery/gallery2.jpg",
         name: "Puffy Peonies",
         date: "October 2, 2023",
         components: ["peonies"],
@@ -148,6 +150,7 @@ const imageDetails = [
     },
     {
         imageSrc: "images/gallery/gallery3.jpg",
+        imageSrc: "https://smazepaa.github.io/personal-project/images/gallery/gallery3.jpg",
         name: "Fresh heartwarming bouquet",
         date: "August 29, 2023",
         components: ["roses", "hydrangeas", "carnations", "tulips"],
@@ -155,6 +158,7 @@ const imageDetails = [
     },
     {
         imageSrc: "images/gallery/gallery4.jpg",
+        imageSrc: "https://smazepaa.github.io/personal-project/images/gallery/gallery4.jpg",
         name: "Warm white tulips",
         date: "August 8, 2023",
         components: ["tulips"],
@@ -162,6 +166,7 @@ const imageDetails = [
     },
     {
         imageSrc: "images/gallery/gallery5.jpg",
+        imageSrc: "https://smazepaa.github.io/personal-project/images/gallery/gallery5.jpg",
         name: "Minimalistic white arrangement",
         date: "September 12, 2023",
         components: ["roses", "gypsophilas"],
@@ -169,6 +174,7 @@ const imageDetails = [
     },
     {
         imageSrc: "images/gallery/gallery6.jpg",
+        imageSrc: "https://smazepaa.github.io/personal-project/images/gallery/gallery6.jpg",
         name: "Unusual flower combination",
         date: "August 17, 2023",
         components: ["tulips", "eucalyptus"],
@@ -176,6 +182,7 @@ const imageDetails = [
     },
     {
         imageSrc: "images/gallery/gallery7.jpg",
+        imageSrc: "https://smazepaa.github.io/personal-project/images/gallery/gallery7.jpg",
         name: "White lilies in paper",
         date: "September 1, 2023",
         components: ["lilies"],
@@ -183,6 +190,7 @@ const imageDetails = [
     },
     {
         imageSrc: "images/gallery/gallery8.jpg",
+        imageSrc: "https://smazepaa.github.io/personal-project/images/gallery/gallery8.jpg",
         name: "Miniature white tulips",
         date: "July 26, 2023",
         components: ["tulips"],
@@ -190,6 +198,7 @@ const imageDetails = [
     },
     {
         imageSrc: "images/gallery/gallery9.jpg",
+        imageSrc: "https://smazepaa.github.io/personal-project/images/gallery/gallery9.jpg",
         name: "Warm spring arrangement",
         date: "May 23, 2023",
         components: ["peonies", "roses", "lilies", "orchids"],
@@ -336,15 +345,16 @@ function CreateFooterColumns() {
 
 function DisplayGallery() {
     let imageUrls = [
-        "images/gallery/gallery1.jpg",
-        "images/gallery/gallery2.jpg",
-        "images/gallery/gallery3.jpg",
-        "images/gallery/gallery4.jpg",
-        "images/gallery/gallery5.jpg",
-        "images/gallery/gallery6.jpg",
-        "images/gallery/gallery7.jpg",
-        "images/gallery/gallery8.jpg",
-        "images/gallery/gallery9.jpg"
+        "https://smazepaa.github.io/personal-project/images/gallery/gallery1.jpg",
+        "https://smazepaa.github.io/personal-project/images/gallery/gallery2.jpg",
+        "https://smazepaa.github.io/personal-project/images/gallery/gallery3.jpg",
+        "https://smazepaa.github.io/personal-project/images/gallery/gallery4.jpg",
+        "https://smazepaa.github.io/personal-project/images/gallery/gallery5.jpg",
+        "https://smazepaa.github.io/personal-project/images/gallery/gallery6.jpg",
+        "https://smazepaa.github.io/personal-project/images/gallery/gallery7.jpg",
+        "https://smazepaa.github.io/personal-project/images/gallery/gallery8.jpg",
+        "https://smazepaa.github.io/personal-project/images/gallery/gallery9.jpg"
+        
     ];
 
     let $imageContainer = $("#images");

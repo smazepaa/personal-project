@@ -1,3 +1,55 @@
 @media screen and (max-width: 480px){
+    .why-divs{
+        flex-direction:column;
+        width:100%;
+        justify-content:center;
+        margin:0;
+    }
 
+    #fresh-image{
+        padding:0;
+        display:flex;
+        justify-content:center;
+    }
+
+    #fresh-text{
+        width:80%;
+    }
+
+        #fresh-text p {
+            font-size: 100%;
+        }
+
+        #fresh-text .button-div{
+            padding:4vw;
+        }
+
+        .button-div a{
+            font-size:200%;
+        }
+
+    .why-divs img{
+        width:80%;
+        height:auto;
+    }
+
+    #fresh-text{
+        margin: auto;
+    }
+
+    .big-center-text{
+        font-size:170%;
+    }
+
+    .description{
+        font-size:95%;
+        width:80%;
+        margin-bottom:5vw;
+    }
+
+    .background-image{
+        height:300%;
+        width:inherit;
+    }
 }
+
