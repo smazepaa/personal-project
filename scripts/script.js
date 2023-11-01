@@ -84,7 +84,6 @@ class Order {
         orderDiv.appendChild(ordText);
 
         removeButton.addEventListener('click', () => {
-            this.remove();
             this.removeFromLocalStorage();
         });
 
