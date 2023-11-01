@@ -52,9 +52,8 @@ class Order {
         // Add a "Remove" button (x)
         const removeButton = document.createElement('button');
         removeButton.className = 'remove-button';
-        removeButton.textContent = 'x';
+        removeButton.textContent = '\u00D7';
 
-        // Add a click event listener to the "Remove" button
         removeButton.addEventListener('click', () => {
             // Remove the order from the array and the display
             const orderIndex = currentOrders.indexOf(this);
@@ -81,20 +80,17 @@ class Order {
         quantityInput.appendChild(quantityInputField);
         quantityInput.appendChild(incrementButton);
 
-        // Add the quantity input section to the order div
         orderDiv.appendChild(image);
         orderDiv.appendChild(ordText);
 
-        // Add a click event listener to the "Remove" button
         removeButton.addEventListener('click', () => {
-            this.removeFromLocalStorage();
             this.remove();
+            this.removeFromLocalStorage();
         });
 
         orderDiv.appendChild(quantityInput);
         orderDiv.appendChild(removeButton);
 
-        // Append the order div to the "Current Orders" section
         currentOrdersContainer.appendChild(orderDiv);
 
         // Show the "Checkout" button (in case it was hidden)
@@ -112,7 +108,7 @@ class Order {
     // Method to remove the order from local storage
     removeFromLocalStorage() {
         const ordersData = JSON.parse(localStorage.getItem('orders')) || [];
-        const updatedOrders = ordersData.filter(orderData => orderData.id !== this.id);
+        const updatedOrders = _.filter(ordersData, orderData => orderData.id !== this.id);
         localStorage.setItem('orders', JSON.stringify(updatedOrders));
     }
 
@@ -519,14 +515,13 @@ function populateBouquetExplore(currentImageSrc) {
 
     exploreContainer.innerHTML = "";
 
-    // Modify the code that populates the small explore images
     randomImages.forEach((imageSrc, index) => {
         const imageDiv = document.createElement("div");
         const imageElement = document.createElement("img");
 
-        const uniqueId = `explore-image-${index}`; // Unique ID for each image
+        const uniqueId = `explore-image-${index}`;
 
-        imageElement.id = uniqueId; // Assign the unique ID
+        imageElement.id = uniqueId;
         imageElement.src = imageSrc;
 
         imageElement.addEventListener("click", function () {
@@ -539,7 +534,6 @@ function populateBouquetExplore(currentImageSrc) {
 }
 
 function setupQuantityInput() {
-    // Get all quantity input elements on the page
     const quantityInputs = document.querySelectorAll('.quantity');
 
     quantityInputs.forEach(input => {
@@ -547,21 +541,18 @@ function setupQuantityInput() {
         const incrementButton = input.nextElementSibling;
 
         decrementButton.addEventListener('click', () => {
-            // Decrease the quantity when the decrement button is clicked
             if (input.value > input.min) {
                 input.value = parseInt(input.value) - 1;
             }
         });
 
         incrementButton.addEventListener('click', () => {
-            // Increase the quantity when the increment button is clicked
             if (input.value < input.max || !input.max) {
                 input.value = parseInt(input.value) + 1;
             }
         });
 
         input.addEventListener('input', () => {
-            // Ensure the entered value is within the specified min and max limits
             if (input.value < input.min) {
                 input.value = input.min;
             } else if (input.max && input.value > input.max) {
@@ -571,11 +562,9 @@ function setupQuantityInput() {
     });
 }
 
-setupQuantityInput();
 
 window.addEventListener("popstate", function (event) {
     if (event.state && event.state.page) {
-        console.log(event.state.page);
         togglePage(event.state.page);
     }
 });
@@ -590,12 +579,11 @@ $(document).ready(function () {
 
     CreateFooterColumns();
     DisplayGallery();
-    // localStorage.clear();
     showPage('home');
     handleNavigation();
     Order.loadOrdersFromLocalStorage();
+    setupQuantityInput();
 });
-
 
 function showPage(page) {
     const allPages = document.querySelectorAll('.page');
@@ -617,34 +605,29 @@ function showPage(page) {
 function handleNavigation() {
     const path = window.location.pathname;
 
-    // Check if the path exactly matches '/contacts'
     if (path.includes('/contacts')) {
-        // If it's an exact match, toggle the "contacts" page
         togglePage('contacts');
-    } else if (path.includes('/gallery')) {
-        // Handle the gallery page
+    }
+    else if (path.includes('/gallery')) {
         togglePage('gallery');
-    } else if (path.includes('/orders')) {
-        // Handle the orders page
+    }
+    else if (path.includes('/orders')) {
         togglePage('orders');
-    } else {
-        // Handle other pages or show the home page by default
+    }
+    else {
+        // Show the home page by default
         togglePage('home');
     }
 }
 
-
-// Add a popstate event listener to handle back/forward navigation
+// A popstate event listener to handle back/forward navigation
 window.addEventListener("popstate", handleNavigation);
 
-// When navigating to a different "page"
 function navigateToPage(page) {
     // Modify the URL without triggering a full page reload
     history.pushState({ page }, null, `/${page}`);
 
-    // Now, you can handle the page change using JavaScript
     handleNavigation();
-
 }
 
 // Add event listeners to navigation links
@@ -656,9 +639,6 @@ navigationLinks.forEach(link => {
         navigateToPage(page);
     });
 });
-
-// Initial page load or manual URL entry
-
 
 function createAndAddOrder() {
     // Get the details of the product from the current page
@@ -683,18 +663,12 @@ function createAndAddOrder() {
 
 // Initialize the array to store current orders
 const currentOrders = [];
+const orderButton = document.getElementById('order-button');
 
-// Add a click event listener to the "Order Now" button
-// Get a reference to your order button
-const orderButton = document.getElementById('order-button'); // Use your actual element ID or class
-
-// Add a click event listener to the order button
 orderButton.addEventListener('click', function () {
-    // Create a <span> element to wrap the text and icon
     const buttonText = document.createElement('span');
     buttonText.innerHTML = '<i class="fa-solid fa-check" style="color: #ffffff;"></i>';
 
-    // Clear the button's content and add the <span> with the new text and icon
     orderButton.innerHTML = '';
     orderButton.appendChild(buttonText);
     createAndAddOrder();
