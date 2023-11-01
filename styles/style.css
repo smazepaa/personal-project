@@ -711,3 +711,29 @@ input[type=submit] {
 .active {
     font-weight: bolder;
 }
+
+#page-contacts{
+    padding: 0 4vw;
+}
+
+#icons-map{
+    display:flex;
+    flex-direction:row;
+    margin-top:5vw;
+    gap:3vw;
+    align-items:center;
+}
+
+#icons-map p{
+    font-size: 1em;
+}
+
+#icons-map h2{
+    font-size: 1.3em;
+}
+
+iframe{
+    width: 50vw;
+    height: 30vw;
+    border: 0;
+}

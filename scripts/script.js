@@ -589,6 +589,7 @@ function navigateToPage(page) {
 
     // Now, you can handle the page change using JavaScript
     handleNavigation();
+
 }
 
 // Add event listeners to navigation links
