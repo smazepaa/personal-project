@@ -519,7 +519,7 @@ input[type=submit] {
 #current {
     display: flex;
     flex-direction: column;
-    margin-bottom: 5vw;
+    margin-bottom: 4vw;
 }
 
     #current .button-div {
@@ -536,6 +536,12 @@ input[type=submit] {
 .ord-status, .bqt-price {
     font-size: 0.9em;
     color: #4A4A4A;
+}
+
+#checkout-button{
+    padding:1vw 1.2vw;
+    margin:auto;
+    font-size:1em;
 }
 
 

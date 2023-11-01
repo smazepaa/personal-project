@@ -1,5 +1,141 @@
 "use strict";
 
+class Order {
+    constructor(id, title, price, status, image) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.status = status;
+        this.image = image;
+    }
+
+    // Method to create and display the order in the "Current Orders" section
+    displayOrder() {
+        const currentOrdersContainer = document.getElementById('current');
+        const orderDiv = document.createElement('div');
+        orderDiv.className = 'order';
+
+        const image = document.createElement('img');
+        image.src = this.image;
+
+        const ordText = document.createElement('div');
+        ordText.className = 'ord-text';
+        const title = document.createElement('p');
+        title.className = 'ord-title';
+        title.textContent = this.title;
+
+        const price = document.createElement('p');
+        price.className = 'bqt-price';
+        price.textContent = this.price;
+
+        ordText.appendChild(title);
+        ordText.appendChild(price);
+
+        // Create the quantity input section
+        const quantityInput = document.createElement('div');
+        quantityInput.className = 'quantity-input';
+
+        const decrementButton = document.createElement('button');
+        decrementButton.className = 'decrement-button';
+        decrementButton.textContent = '-';
+
+        const quantityInputField = document.createElement('input');
+        quantityInputField.type = 'number';
+        quantityInputField.className = 'quantity';
+        quantityInputField.value = '1';
+        quantityInputField.min = '1';
+
+        const incrementButton = document.createElement('button');
+        incrementButton.className = 'increment-button';
+        incrementButton.textContent = '+';
+
+        // Add a "Remove" button (x)
+        const removeButton = document.createElement('button');
+        removeButton.className = 'remove-button';
+        removeButton.textContent = 'x';
+
+        // Add a click event listener to the "Remove" button
+        removeButton.addEventListener('click', () => {
+            // Remove the order from the array and the display
+            const orderIndex = currentOrders.indexOf(this);
+            if (orderIndex > -1) {
+                currentOrders.splice(orderIndex, 1);
+            }
+            orderDiv.remove();
+
+            // Remove the order from local storage
+            const ordersData = JSON.parse(localStorage.getItem('orders')) || [];
+            const updatedOrders = ordersData.filter(orderData => orderData.id !== this.id);
+            localStorage.setItem('orders', JSON.stringify(updatedOrders));
+
+            // Check if there are no current orders
+            if (currentOrders.length === 0) {
+                // Hide the "Checkout" button
+                const checkoutButton = document.getElementById('checkout-button');
+                checkoutButton.style.display = 'none';
+            }
+        });
+
+        // Append the quantity input elements to the quantity input section
+        quantityInput.appendChild(decrementButton);
+        quantityInput.appendChild(quantityInputField);
+        quantityInput.appendChild(incrementButton);
+
+        // Add the quantity input section to the order div
+        orderDiv.appendChild(image);
+        orderDiv.appendChild(ordText);
+
+        // Add a click event listener to the "Remove" button
+        removeButton.addEventListener('click', () => {
+            this.removeFromLocalStorage();
+            this.remove();
+        });
+
+        orderDiv.appendChild(quantityInput);
+        orderDiv.appendChild(removeButton);
+
+        // Append the order div to the "Current Orders" section
+        currentOrdersContainer.appendChild(orderDiv);
+
+        // Show the "Checkout" button (in case it was hidden)
+        const checkoutButton = document.getElementById('checkout-button');
+        checkoutButton.style.display = 'block';
+    }
+
+    // Method to save the order to local storage
+    saveToLocalStorage() {
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push(this);
+        localStorage.setItem('orders', JSON.stringify(orders));
+    }
+
+    // Method to remove the order from local storage
+    removeFromLocalStorage() {
+        const ordersData = JSON.parse(localStorage.getItem('orders')) || [];
+        const updatedOrders = ordersData.filter(orderData => orderData.id !== this.id);
+        localStorage.setItem('orders', JSON.stringify(updatedOrders));
+    }
+
+    static loadOrdersFromLocalStorage() {
+        const ordersData = JSON.parse(localStorage.getItem('orders')) || [];
+
+        if (ordersData.length > 0) {
+            ordersData.forEach(orderData => {
+                const order = new Order(
+                    orderData.id,
+                    orderData.title,
+                    orderData.price,
+                    orderData.status,
+                    orderData.image
+                );
+                order.displayOrder();
+                currentOrders.push(order);
+            });
+        }
+    }
+}
+
+
 const imageDetails = [
     {
         imageSrc: "images/gallery/gallery1.jpg",
@@ -456,31 +592,9 @@ $(document).ready(function () {
     DisplayGallery();
     // localStorage.clear();
     showPage('home');
-
+    handleNavigation();
+    Order.loadOrdersFromLocalStorage();
 });
-
-class Order {
-    constructor(id, title, price, status, image) {
-        this.id = id;
-        this.title = title;
-        this.price = price;
-        this.status = status;
-        this.image = image;
-    }
-
-    saveToLocalStorage() {
-        const orders = JSON.parse(localStorage.getItem('orders')) || [];
-        orders.push(this);
-        localStorage.setItem('orders', JSON.stringify(orders));
-    }
-
-    static getAllOrdersFromLocalStorage() {
-        const ordersData = JSON.parse(localStorage.getItem('orders')) || [];
-        return ordersData.map(orderData => {
-            return new Order(orderData.id, orderData.title, orderData.price, orderData.status, orderData.image);
-        });
-    }
-}
 
 
 function showPage(page) {
@@ -544,7 +658,7 @@ navigationLinks.forEach(link => {
 });
 
 // Initial page load or manual URL entry
-handleNavigation();
+
 
 function createAndAddOrder() {
     // Get the details of the product from the current page
@@ -554,106 +668,16 @@ function createAndAddOrder() {
 
     const message = $('#message');
 
-    // Create a new order using the details
     const order = new Order(
-        'order-' + Date.now(), // Unique ID for the order (you can use your own logic)
+        'order-' + Date.now(),
         $bqtName.text(),
         $price.text(),
-        'new', // Set the initial status to 'new'
+        'new',
         $bigImageSrc.attr('src')
     );
 
-    // Save the new order to local storage
     order.saveToLocalStorage();
-
-    // Add the new order to the array of current orders
-    currentOrders.push(order);
-
-    // Display the new order in the "Current Orders" section
-    const currentOrdersContainer = document.getElementById('current');
-    const orderDiv = document.createElement('div');
-    orderDiv.className = 'order';
-
-    const image = document.createElement('img');
-    image.src = order.image;
-
-    const ordText = document.createElement('div');
-    ordText.className = 'ord-text';
-    const title = document.createElement('p');
-    title.className = 'ord-title';
-    title.textContent = order.title;
-
-    const price = document.createElement('p');
-    price.className = 'bqt-price';
-    price.textContent = order.price;
-
-    ordText.appendChild(title);
-    ordText.appendChild(price);
-
-    // Create the quantity input section
-    const quantityInput = document.createElement('div');
-    quantityInput.className = 'quantity-input';
-
-    const decrementButton = document.createElement('button');
-    decrementButton.className = 'decrement-button';
-    decrementButton.textContent = '-';
-
-    const quantityInputField = document.createElement('input');
-    quantityInputField.type = 'number';
-    quantityInputField.className = 'quantity';
-    quantityInputField.value = '1';
-    quantityInputField.min = '1';
-
-    const incrementButton = document.createElement('button');
-    incrementButton.className = 'increment-button';
-    incrementButton.textContent = '+';
-
-    // Add a "Remove" button (x)
-    const removeButton = document.createElement('button');
-    removeButton.className = 'remove-button';
-    removeButton.textContent = 'x';
-
-    // Add a click event listener to the "Remove" button
-    removeButton.addEventListener('click', () => {
-        // Remove the order from the array and the display
-        const orderIndex = currentOrders.indexOf(order);
-        if (orderIndex > -1) {
-            currentOrders.splice(orderIndex, 1);
-        }
-        orderDiv.remove();
-
-        // Remove the order from local storage
-        const ordersData = JSON.parse(localStorage.getItem('orders')) || [];
-        const updatedOrders = ordersData.filter(orderData => orderData.id !== order.id);
-        localStorage.setItem('orders', JSON.stringify(updatedOrders));
-
-        // Check if there are no current orders
-        if (currentOrders.length === 0) {
-            // Hide the "Checkout" button
-            const checkoutButton = document.getElementById('checkout-button');
-            checkoutButton.style.display = 'none';
-        }
-    });
-
-    // Append the quantity input elements to the quantity input section
-    quantityInput.appendChild(decrementButton);
-    quantityInput.appendChild(quantityInputField);
-    quantityInput.appendChild(incrementButton);
-
-    // Add the quantity input section to the order div
-    orderDiv.appendChild(image);
-    orderDiv.appendChild(ordText);
-    orderDiv.appendChild(quantityInput);
-
-    // Add the "Remove" button to the order div
-    orderDiv.appendChild(removeButton);
-
-    // Append the order div to the "Current Orders" section
-    currentOrdersContainer.insertBefore(orderDiv, currentOrdersContainer.firstChild);
-
-    // Show the "Checkout" button (in case it was hidden)
-    const checkoutButton = document.getElementById('checkout-button');
-    checkoutButton.style.display = 'block';
+    order.displayOrder();
 }
 
 
