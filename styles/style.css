@@ -90,17 +90,7 @@ footer .button-div {
 
 /* header (homepage) styling */
 
-.background-image {
-    width: 100%;
-    position: relative;
-}
-
-    .background-image img {
-        width: 100%;
-    }
-
 .page-header.home-header .content-container {
-    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -110,6 +100,11 @@ footer .button-div {
     color: white;
     height: fit-content;
     color: white;
+    background-image: url("../images/index/bg_image_header.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 4vw;
 }
 
 #head {
@@ -120,6 +115,8 @@ footer .button-div {
 }
 
 .small {
+    display: flex;
+    align-items: center;
     margin: 0 2vw;
 }
 
@@ -148,11 +145,11 @@ footer .button-div {
 
 .smaller-text {
     margin-left: 4vw;
-    font-size: 1.3vw;
     width: 40%;
 }
 
     .smaller-text p {
+        font-size: 1.3vw;
         margin-top: 0;
     }
 
@@ -302,7 +299,6 @@ footer .button-div {
     padding: 2.4vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
     .rev img {
@@ -342,10 +338,6 @@ footer .button-div {
     margin-bottom: 1vw;
 }
 
-#d-smaller {
-    font-size: 1.2vw;
-}
-
 #questions {
     display: flex;
     flex-direction: column;
@@ -358,28 +350,27 @@ footer .button-div {
 .question {
     border-bottom: 1px solid #7A7A7A;
     width: 80%;
-    height: 7vw;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0 2vw;
+    padding: 1.5vw 2vw;
 }
 
 .qstn-text, .answer-text {
     width: fit-content;
+    font-size: 1em;
 }
 
 .qstn-text {
-    font-size: 1.35vw;
     font-weight: 700;
 }
 
 .round-btn {
     width: fit-content;
-    padding: 0.4vw 1.2vw;
+    padding: 0.5vw 1vw;
     background: #E3E5E4;
     border-radius: 100%;
-    font-size: 2.1vw;
+    font-size: 100%;
     font-weight: 400;
     color: #7A7A7A;
     margin-left: auto;
@@ -393,22 +384,16 @@ footer .button-div {
 .answer {
     display: none;
     width: 80%;
-    height: 5vw;
     align-items: center;
 }
 
-.answer-text {
-    width: 90%;
-    font-size: 1.2vw;
-}
-
 input[type=email] {
-    width: 30vw;
+    width: 35%;
     padding: 0.9vw;
     background: #D9D9D9;
     border: none;
     font-family: Montserrat;
-    height: 1.3vw;
+    height: 100%;
     font-size: 1.3vw;
     margin-right: 0;
 }
@@ -424,7 +409,7 @@ input[type=submit] {
     right: 0;
     border: none;
     padding: 0 1vw;
-    height: 3.1vw;
+    height: 3.51vw;
     line-height: 2.8vw;
     background: #639654;
     font-family: Montserrat;

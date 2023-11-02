@@ -1,4 +1,5 @@
 @media screen and (max-width: 480px){
+
     .why-divs{
         flex-direction:column;
         width:100%;
@@ -6,25 +7,26 @@
         margin:0;
     }
 
-    #fresh-image{
+    #fresh-image, #cust-image{
         padding:0;
         display:flex;
         justify-content:center;
     }
 
-    #fresh-text{
-        width:80%;
+    #fresh-text, #cust-text {
+        width: 80%;
+        margin: 5vw 0
     }
 
-        #fresh-text p {
+        #fresh-text p, #cust-text p {
             font-size: 100%;
         }
 
-        #fresh-text .button-div{
-            padding:4vw;
+        .button-div .transp-btn{
+            padding:0.5vw 1vw;
         }
 
-        .button-div a{
+        .button-div a, .transp-btn a{
             font-size:200%;
         }
 
@@ -33,23 +35,98 @@
         height:auto;
     }
 
-    #fresh-text{
-        margin: auto;
-    }
-
     .big-center-text{
-        font-size:170%;
+        font-size:150%;
     }
 
     .description{
-        font-size:95%;
+        font-size:90%;
         width:80%;
         margin-bottom:5vw;
     }
 
-    .background-image{
-        height:300%;
-        width:inherit;
+    #cust-text{
+        order: 4;
+    }
+    
+    #fresh-text{
+        margin-top: 3vw;
+    }
+
+    .brand-name{
+        font-size: 300%;
+    }
+
+    .center-big {
+        width:90%;
+    }
+
+    .exp-big {
+        font-size: 140%;
+    }
+
+    .small-description{
+        font-size:110%;
+    }
+
+    #reviews{
+        flex-direction:column;
+        row-gap:3vw;
+    }
+    .rev {
+        display: grid;
+        width: 90%;
+        padding: 4%;
+    }
+
+        .rev img {
+            height: auto;
+            grid-column: 1;
+            grid-row: 1 / span 2;
+        }
+
+        .rev p{
+            font-size:80%;
+            margin:auto;
+        }
+
+    .comment, .author {
+        grid-column: 2;
+        font-size:100%;
+    }
+
+    .small{
+        font-size: 200%;
+        display:flex;
+        align-items:center;
+    }
+
+    .big-text p{
+        font-size: 120%;
+    }
+
+    .smaller-text{
+        width:60%;
+    }
+
+    .smaller-text p{
+        font-size:100%;
+    }
+
+    #sign-up .small-description{
+        width:80%;
+    }
+
+    .small-title{
+        font-size:100%;
+    }
+
+    #faq{
+        font-size:100%;
+    }
+
+    .question p{
+        font-size:100%;
     }
 }
 

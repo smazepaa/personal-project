@@ -646,6 +646,7 @@ navigationLinks.forEach(link => {
         event.preventDefault(); // Prevent the default link behavior
         const page = event.currentTarget.getAttribute('data-page');
         navigateToPage(page);
+        link.className = 'active';
     });
 });
 
